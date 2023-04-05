@@ -46,8 +46,11 @@ class Matriz{
         void addNumber(short int number);
         void print();
         void createPortals();
-        bool randomStreet(int *keyRow, int *keyColumn, bool *caminho);
+        bool randomStreet(int *keyRow, int *keyColumn);
+        bool isFirstElement(Numero *adreess);
+        void makeDecision(int *keyRow, int *keyColumn, int currentRow, int currentColumn);
         /************************************************************** FINAL METODOS */
 };
 
 #endif
+

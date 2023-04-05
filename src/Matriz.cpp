@@ -150,514 +150,56 @@ void Matriz::createPortals(){
     }
 }
 
-bool Matriz::randomStreet(int *keyRow, int* keyColumn, bool *caminho){
+bool Matriz::randomStreet(int *keyRow, int *keyColumn){
     srand(time(0));
-    short int nextStreet;
+    int currentRow = *keyRow, currentColumn = *keyColumn;
+    makeDecision(keyRow, keyColumn, currentRow, currentColumn);
     while(true){
-    	*caminho = false;
-    	//cout << "\n\nPrint de antes = [" << *keyRow << "][" << *keyColumn << "]\n\n";
-        matriz[*keyRow][*keyColumn] = 0;
-        matriz[*keyRow][*keyColumn].setVisit(true);
-        print();
-        if(*keyRow == 0 && *keyColumn == 0){ //      CANTO SUPERIOR ESQUERDO
-        	//cout << "\n\nCANTO SUPERIOR ESQUERDOO  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-            nextStreet = rand() % 5;
-            if(nextStreet == 0){ //      PARA DIREITA
-            	if(!(&matriz[*keyRow][*keyColumn + 1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn + 1;
-                	//cout << "\n\nPARA DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 1){ //      PARA DIAGONAL INFERIOR DIREITA
-            	if(!(&matriz[*keyRow+1][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-	                *keyRow = *keyRow + 1;
-	                *keyColumn = *keyColumn + 1;
-					//cout << "\n\nPARA DIAGONAL INFERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 2){ //      PARA BAIXO
-            	if(!(&matriz[*keyRow+1][*keyColumn] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;	
-                	//cout << "\n\nPARA BAIXO  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 3){ //      PARA DIAGONAL INFERIOR ESQUERDA
-            	if(!(&this->anterior->matriz[*keyRow+1][this->tamanhoColuna-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;
-                	*keyColumn = this->tamanhoColuna-1;
-                	//cout << "\n\nPARA DIAGONAL INFERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		        	    *caminho = true;
-		        	}
-                	return false;	
-				}
-            }
-            else if(nextStreet == 4){ //      PARA ESQUERDA
-            	if(!(&this->anterior->matriz[*keyRow][this->tamanhoColuna-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-            		*keyRow = 0;
-                	*keyColumn = this->tamanhoColuna-1;
-                	//cout << "\n\nPARA ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		        	    *caminho = true;
-		        	}
-                	return false;	
-				}
-            }
-        }
-        else if(*keyRow == 0 && *keyColumn == this->tamanhoColuna-1){ //       CANTO SUPERIOR DIREITO
-            //cout << "\n\nCANTO SUPERIOR DIREITO  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-			nextStreet = rand() % 5;
-            if(nextStreet == 0){ //      PARA DIREITA
-            	if(!(&this->proximo->matriz[*keyRow][0] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-            		*keyRow = 0;
-                	*keyColumn = 0;
-                	//cout << "\n\nPARA DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		        	    *caminho = true;
-		        	}
-                	return true;	
-				}
-            }
-            else if(nextStreet == 1){ //      PARA DIAGONAL INFERIOR DIREITA
-            	if(!(&this->proximo->matriz[*keyRow+1][0] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;
-                	*keyColumn = 0;
-                	//cout << "\n\nPARA DIAGONAL INFERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		        	    *caminho = true;
-		        	}
-                	return true;
-				}
-            }
-            else if(nextStreet == 2){ //      PARA BAIXO
-            	if(!(&matriz[*keyRow+1][*keyColumn] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;	
-                	//cout << "\n\nPARA BAIXO  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 3){ //      PARA DIAGONAL INFERIOR ESQUERDA
-            	if(!(&matriz[*keyRow+1][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;
-                	*keyColumn = *keyColumn - 1;
-					//cout << "\n\nPARA DIAGONAL INFERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 4){ //      PARA ESQUERDA
-            	if(!(&matriz[*keyRow][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn - 1;
-					//cout << "\n\nPARA ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-        }
-        else if(*keyRow == this->tamanhoLinha-1 && *keyColumn == 0){ //     CANTO INFERIOR ESQUERDO    
-            //cout << "\n\nCANTO INFERIOR ESQUERDO  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-			nextStreet = rand() % 5;
-            if(nextStreet == 0){ //      PARA ESQUERDA
-            	if(!(&this->anterior->matriz[*keyRow][this->tamanhoColuna-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-            		*keyRow = 6; 
-                	*keyColumn = this->tamanhoColuna-1;
-                	//cout << "\n\nPARA ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		        	    *caminho = true;
-		        	} 
-                	return false;	
-				}
-            }
-            else if(nextStreet == 1){ //      PARA DIAGONAL SUPERIOR ESQUERDA
-            	if(!(&this->anterior->matriz[*keyRow-1][this->tamanhoColuna-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	*keyColumn = this->tamanhoColuna-1;
-                	//cout << "\n\nPARA DIAGONAL SUPERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		            	*caminho = true;
-		        	}
-                	return false;	
-				}
-            }
-            else if(nextStreet == 2){ //      PARA CIMA
-            	if(!(&matriz[*keyRow-1][*keyColumn] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;	
-                	//cout << "\n\nPARA CIMA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 3){ //      PARA DIAGONAL SUPERIOR DIREITA
-            	if(!(&matriz[*keyRow-1][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	*keyColumn = *keyColumn + 1;
-					//cout << "\n\nPARA DIAGONAL SUPERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 4){ //      PARA DIREITA
-            	if(!(&matriz[*keyRow][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn + 1;
-					//cout << "\n\nPARA DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-        }
-        else if(*keyRow == this->tamanhoLinha-1 && *keyColumn == this->tamanhoColuna-1){ //      CANTO INFERIOR DIREITO
-            //cout << "\n\nCANTO INFERIOR DIREITO [" << *keyRow << "][" << *keyColumn << "]\n\n";
-            nextStreet = rand() % 5;
-            if(nextStreet == 0){ //      PARA ESQUERDA
-            	if(!(&matriz[*keyRow][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn - 1;
-                	//cout << "\n\nPARA ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 1){ //      PARA DIAGONAL SUPERIOR ESQUERDA
-            	if(!(&matriz[*keyRow-1][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	*keyColumn = *keyColumn - 1;
-					//cout << "\n\nPARA DIAGONAL SUPERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 2){ //      PARA CIMA
-            	if(!(&matriz[*keyRow-1][*keyColumn] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	//cout << "\n\nPARA CIMA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 3){ //      PARA DIAGONAL SUPERIOR DIREITA
-            	if(!(&this->proximo->matriz[*keyRow-1][0] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	*keyColumn = 0;
-                	//cout << "\n\nPARA DIAGONAL SUPERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		        	    *caminho = true;
-		        	}
-                	return true;	
-				}
-            }
-            else if(nextStreet == 4){ //      PARA DIREITA
-            	if(!(&this->proximo->matriz[*keyRow][0] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-            		*keyRow = 6;
-                	*keyColumn = 0;
-                	//cout << "\n\nPARA DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		        	    *caminho = true;
-		        	}
-                return true;	
-				}
-            }
-        }
-        else if(*keyRow == 0){ //      BORDA SUPERIOR
-        	//cout << "\n\nBORDA SUPERIOR  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-            nextStreet = rand() % 5;
-            if(nextStreet == 0){ //      PARA DIREITA
-            	if(!(&matriz[*keyRow][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn + 1;
-					//cout << "\n\nPARA DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 1){ //     CANTO INFERIOR DIREITA
-            	if(!(&matriz[*keyRow+1][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;
-                	*keyColumn = *keyColumn + 1;
-					//cout << "\n\nPARA DIAGONAL INFERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 2){ //      PARA BAIXO
-            	if(!(&matriz[*keyRow+1][*keyColumn] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-            		*keyRow = *keyRow + 1;
-            		//cout << "\n\nPARA BAIXO  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 3){ //     CANTO INFERIOR ESQUERDA
-            	if(!(&matriz[*keyRow+1][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;
-                	*keyColumn = *keyColumn - 1;
-					//cout << "\n\nDIAGONAL INFERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 4){//      PARA ESQUERDA
-            	if(!(&matriz[*keyRow][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn - 1;
-                	//cout << "\n\nPARA ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-        }
-        else if(*keyColumn == this->tamanhoColuna-1){ //        BORDA DIREITA
-        	//cout << "\n\nBORDA DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-            nextStreet = rand() % 8;
-            if(nextStreet == 0){ //      PARA DIAGONAL SUPERIOR ESQUERDA
-            	if(!(&matriz[*keyRow-1][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	*keyColumn = *keyColumn - 1;
-					//cout << "\n\nPARA DIAGONAL SUPERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 1){ //      PARA CIMA
-            	if(!(&matriz[*keyRow-1][*keyColumn] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	//cout << "\n\nPARA CIMA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 2){ //      PARA DIAGONAL SUPERIOR DIREITA
-            	if(!(&this->proximo->matriz[*keyRow-1][0] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	*keyColumn = 0;
-                	//cout << "\n\nPARA DIAGONAL SUPERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		        	    *caminho = true;
-		        	}
-                	return true;	
-				}
-            }
-            else if(nextStreet == 3){ //      PARA DIREITA
-            	if(!(&this->proximo->matriz[*keyRow][0] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = 0;
-                	//cout << "\n\nPARA DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-               		if(*keyRow == 0 && *keyColumn == 0){
-		        	    *caminho = true;
-		        	}
-                	return true;
-				}
-            }
-            else if(nextStreet == 4){ //     DIAGONAL INFERIOR DIREITA
-            	if(!(&this->proximo->matriz[*keyRow+1][0] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;
-                	*keyColumn = 0;
-                	//cout << "\n\nPARA DIAGONAL INFERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		        	    *caminho = true;
-		        	}
-                	return true;	
-				}
-            }
-            else if(nextStreet == 5){ //      PARA BAIXO
-            	if(!(&matriz[*keyRow+1][*keyColumn] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;	
-                	//cout << "\n\nPARA BAIXO  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 6){ //     DIAGONAL INFERIOR ESQUERDA
-            	if(!(&matriz[*keyRow+1][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;
-                	*keyColumn = *keyColumn - 1;
-					//cout << "\n\nDIAGONAL INFERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 7){ //      PARA ESQUERDA
-            	if(!(&matriz[*keyRow][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn - 1;
-                	//cout << "\n\nPARA ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-        }
-        else if(*keyRow == this->tamanhoLinha-1){ //        BORDA INFERIOR
-            //cout << "\n\nBORDA INFERIOR  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-			nextStreet = rand() % 5;
-            if(nextStreet == 0){ //      PARA ESQUERDA
-            	if(!(&matriz[*keyRow][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn - 1;
-                	//cout << "\n\nPARA ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 1){ //      PARA DIAGONAL SUPERIOR ESQUERDA
-            	if(!(&matriz[*keyRow-1][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	*keyColumn = *keyColumn - 1;
-                	//cout << "\n\nPARA DIAGONAL SUPERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 2){ //      PARA CIMA
-            	if(!(&matriz[*keyRow-1][*keyColumn] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-               		*keyRow = *keyRow - 1;
-					//cout << "\n\nPARA CIMA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 3){ //      PARA DIAGONAL SUPERIOR DIREITA
-            	if(!(&matriz[*keyRow-1][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	*keyColumn = *keyColumn + 1;
-                	//cout << "\n\nPARA DIAGONAL SUPERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 4){ //      PARA DIREITA
-            	if(!(&matriz[*keyRow][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn + 1;
-					//cout << "\n\nPARA DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-        }
-        else if(*keyColumn == 0){ //      BORDA ESQUERDA
-        	//cout << "\n\nBORDA ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-            nextStreet = rand() % 8;
-            if(nextStreet == 0){ //      PARA DIAGONAL SUPERIOR ESQUERDA
-            	if(!(&this->anterior->matriz[*keyRow-1][this->tamanhoColuna-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	*keyColumn = this->tamanhoColuna-1; 
-                	//cout << "\n\nPARA DIAGONAL SUPERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		         	   *caminho = true;
-		       		}
-                	return false;	
-				}
-            }
-            else if(nextStreet == 1){ //      PARA CIMA
-            	if(!(&matriz[*keyRow-1][*keyColumn] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-					//cout << "\n\nPARA CIMA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 2){ //      PARA DIAGONAL SUPERIOR DIREITA
-            	if(!(&matriz[*keyRow-1][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	*keyColumn = *keyColumn + 1; 	
-                	//cout << "\n\nPARA DIAGONAL SUPERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 3){ //      PARA DIREITA
-            	if(!(&matriz[*keyRow][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn + 1;
-					//cout << "\n\nPARA DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 4){ //     DIAGONAL INFERIOR DIREITA
-            	if(!(&matriz[*keyRow+1][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;
-                	*keyColumn = *keyColumn + 1;
-					//cout << "\n\nPARA DIAGONAL INFERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 5){ //      PARA BAIXO
-            	if(!(&matriz[*keyRow+1][*keyColumn] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;	
-                	//cout << "\n\nPARA BAIXO  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 6){ //     DIAGONAL INFERIOR ESQUERDA
-            	if(!(&this->anterior->matriz[*keyRow+1][this->tamanhoColuna-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;
-                	*keyColumn = this->tamanhoColuna-1;
-                	////cout << "\n\nDIAGONAL INFERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-               		if(*keyRow == 0 && *keyColumn == 0){
-		            *caminho = true;
-		        	}
-                	return false;	
-				}
-            }
-            else if(nextStreet == 7){ //      PARA ESQUERDA
-            	if(!(&this->anterior->matriz[*keyRow][this->tamanhoColuna-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = this->tamanhoColuna-1;
-                	//cout << "\n\nPARA ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-                	if(*keyRow == 0 && *keyColumn == 0){
-		        	    *caminho = true;
-		        	}
-                	return false;	
-				}
-            }
-        }
-        else{ //        MEIO DA MATRIZ 
-        	//cout << "\n\nMEIO DA MATRIZ  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-        	nextStreet = rand() % 8;
-            if(nextStreet == 0){ //      PARA DIAGONAL SUPERIOR ESQUERDA
-            	if(!(&matriz[*keyRow-1][*keyColumn-1] == this->lastVisit)){
-	            	this->lastVisit = &matriz[*keyRow][*keyColumn];
-	                *keyRow = *keyRow - 1;
-	                *keyColumn = *keyColumn - 1;
-					//cout << "\n\nPARA DIAGONAL SUPERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 1){ //      PARA CIMA
-            	if(!(&matriz[*keyRow-1][*keyColumn] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-					//cout << "\n\nPARA CIMA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				}
-            }
-            else if(nextStreet == 2){ //      PARA DIAGONAL SUPERIOR DIREITA
-            	if(!(&matriz[*keyRow-1][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow - 1;
-                	*keyColumn = *keyColumn + 1;
-                	//cout << "\n\nPARA DIAGONAL SUPERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 3){ //      PARA DIREITA
-            	if(!(&matriz[*keyRow][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn + 1;
-					//cout << "\n\nPARA DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n"; 	
-				}
-            }
-            else if(nextStreet == 4){ //     DIAGONAL INFERIOR DIREITA
-            	if(!(&matriz[*keyRow+1][*keyColumn+1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyRow = *keyRow + 1;
-                	*keyColumn = *keyColumn + 1;
-					//cout << "\n\nPARA DIAGONAL INFERIOR DIREITA  [" << *keyRow << "][" << *keyColumn << "]\n\n";	
-				} 
-            }
-            else if(nextStreet == 5){ //      PARA BAIXO
-            	if(!(&matriz[*keyRow+1][*keyColumn] == this->lastVisit)){
-					this->lastVisit = &matriz[*keyRow][*keyColumn];
-	                *keyRow = *keyRow + 1;
-	                //cout << "\n\nPARA BAIXO  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 6){ //     DIAGONAL INFERIOR ESQUERDA
-            	if(!(&matriz[*keyRow+1][*keyColumn-1] == this->lastVisit)){
-	         		this->lastVisit = &matriz[*keyRow][*keyColumn];
-	                *keyRow = *keyRow + 1;
-	                *keyColumn = *keyColumn - 1;
-					//cout << "\n\nDIAGONAL INFERIOR ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-            else if(nextStreet == 7){ //      PARA ESQUERDA
-            	if(!(&matriz[*keyRow][*keyColumn-1] == this->lastVisit)){
-            		this->lastVisit = &matriz[*keyRow][*keyColumn];
-                	*keyColumn = *keyColumn - 1;
-                	//cout << "\n\nPARA ESQUERDA  [" << *keyRow << "][" << *keyColumn << "]\n\n";
-				}
-            }
-        }
-    }
+    	currentRow = *keyRow;
+		currentColumn = *keyColumn;
+		this->lastVisit = &this->matriz[*keyRow][*keyColumn];
+		this->lastVisit->setVisit(true);
+    	do{
+    		*keyRow += (-1+rand()%3);
+	    	*keyColumn += (-1+rand()%3);	
+		}while((*keyRow  == currentRow && *keyColumn == currentColumn) || (&this->matriz[*keyRow][*keyColumn] == this->lastVisit));
+	    if(*keyColumn < 0  && (*keyRow >=0 && *keyRow <= this->tamanhoLinha-1)){     // -----> MATRIZ ANTERIOR
+	        *keyColumn = this->tamanhoColuna-1;
+	        return false;
+	    }
+	    else if(*keyColumn == this->tamanhoColuna  && (*keyRow >=0 && *keyRow <= this->tamanhoLinha-1)){     // -----> MATRIZ POSTERIOR
+	        *keyColumn = 0;
+	        return true;
+	    }
+	    makeDecision(keyRow, keyColumn, currentRow, currentColumn);
+	}
     return NULL;
+}
+
+bool Matriz::isFirstElement(Numero *adreess){
+	if(adreess == &matriz[0][0]){
+		return true;
+	}
+    return false;
+}
+
+void Matriz::makeDecision(int *keyRow, int *keyColumn, int currentRow, int currentColumn){
+	if(*keyRow < 0){
+		*keyRow = currentRow;
+		*keyColumn = currentColumn;
+		randomStreet(keyRow, keyColumn);
+	}
+	else if (*keyRow == this->tamanhoLinha){       // -----> CAIU FORA PELAS BORDAS HORIZONTAIS
+	    *keyRow = currentRow;
+		*keyColumn = currentColumn;
+		randomStreet(keyRow, keyColumn);
+	}
+	else if(&this->matriz[*keyRow][*keyColumn] == this->lastVisit){
+		// NÃO FAZ NADA
+	}
+	else{
+		this->matriz[*keyRow][*keyColumn] = 0;
+		print();	
+	}
 }
 /******************************************************************************************** FINAL METODOS */

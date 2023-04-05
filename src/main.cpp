@@ -13,7 +13,7 @@ ListMatrizes lerMatrizesQuadradas(string txt){
         fstream inFile;
         inFile.open(txt.c_str());
         if(!inFile){
-            throw "../main.cpp::lerTxt ---> Não foi possível abrir o arquivo de entrada";
+            throw "../main.cpp::lerTxt ---> N?o foi poss?vel abrir o arquivo de entrada";
         }
         string numberStr;
         short int aux = 0, tamanhoLinha = 0, tamanhoColuna = 0, aux2 =0, numberInt, limite = 0;
@@ -60,6 +60,7 @@ ListMatrizes lerMatrizesQuadradas(string txt){
 }
 
 int main(){
+    srand(time(0));
     setlocale(LC_ALL, "Portuguese");
     cout << "\n************* INICIO *************\n";
     ListMatrizes listaM;
@@ -68,3 +69,4 @@ int main(){
     cout << "\n************* FIM *************\n\n";
     return 0;
 }
+

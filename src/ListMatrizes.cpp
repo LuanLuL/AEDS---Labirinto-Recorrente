@@ -113,7 +113,7 @@ bool ListMatrizes::empty(){
 void ListMatrizes::print(){
     Matriz *aux = this->inicio;
     if(empty()){
-        cout << "---> A lista não possui elementos!";
+        cout << "---> A lista n?o possui elementos!";
     }
     else{
         do{
@@ -126,7 +126,7 @@ void ListMatrizes::print(){
 void ListMatrizes::printInvertido(){
      Matriz *aux = this->final;
     if(empty()){
-        cout << "---> A lista não possui elementos!";
+        cout << "---> A lista n?o possui elementos!";
     }
     else{
         do{
@@ -137,11 +137,10 @@ void ListMatrizes::printInvertido(){
 }
 void ListMatrizes::solveMaze(){
     int column = 0, row = 0;
-    bool caminho = false, alternateMatriz;
+    bool alternateMatriz;
     Matriz *matriz = this->inicio;
-    while(!caminho || !(matriz == this->inicio) || !allVisit()){
-        alternateMatriz = matriz->randomStreet(&row, &column, &caminho);
-        matriz->setVisit(true);
+    while(finishSolveMaze(*matriz)){
+        alternateMatriz = matriz->randomStreet(&row, &column);
         if(alternateMatriz == true){
             matriz = matriz->getProximo();
         }
@@ -150,18 +149,24 @@ void ListMatrizes::solveMaze(){
             
         }
     }
-    
 }
 
 bool ListMatrizes::allVisit(){
 	Matriz *aux = this->inicio;
-	bool returnBool = true;
     do{
     	if(aux->getVisit() == false){
-    		returnBool = false;
+    		return false;
 		}
         aux = aux->getProximo();
     }while(aux != this->inicio);
-    return returnBool;	
+    return true;	
+}
+
+bool ListMatrizes::finishSolveMaze(Matriz matriz){
+    if(allVisit() && matriz.isFirstElement(&matriz.getMatriz()[0][0]) && (&matriz == this->inicio)){
+        return false;
+    }
+    return true;
 }
 /************************************************** FINAL METODOS */
+

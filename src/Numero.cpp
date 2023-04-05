@@ -29,3 +29,4 @@ void Numero::setVisit(bool newVisit){
     this->visit = newVisit;
 }
 /************************************************** FINAL GETTERS AND SETTERS */
+

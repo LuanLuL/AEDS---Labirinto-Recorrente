@@ -33,8 +33,10 @@ class ListMatrizes{
         void printInvertido();
         void solveMaze();
         bool allVisit();
+        bool finishSolveMaze(Matriz matriz);
         /************************************************** FINAL METODOS */
         
 };
 
 #endif
+
