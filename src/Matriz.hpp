@@ -13,9 +13,6 @@ class Matriz{
         Numero *lastVisit;
         bool visit;
         short int linha, coluna, tamanhoLinha, tamanhoColuna;
-        Matriz *proximo;
-        Matriz *anterior;
-
     public:
         /*************************************************************** INICIO CONSTRUTORES */
         Matriz();
@@ -32,23 +29,19 @@ class Matriz{
         void setLinha(short int newLinha);
         short int getColuna();
         void setColuna(short int newColuna);
-        Matriz *getProximo();
-        void setProximo(Matriz *newProximo);
-        Matriz *getAnterior();
-        void setAnterior(Matriz *newAnterior);
         Numero *getLastVisit();
         void setLastVisit(Numero *newLastVisit);
         bool getVisit();
-        void setVisit(bool newVisit);
+        void setVisit(bool newVisit);  
         /*************************************************************** FINAL GETTERS AND SETTERS */
 
         /*************************************************************** INICIO METODOS */
         void addNumber(short int number);
         void print();
         void createPortals();
-        bool randomStreet(int *keyRow, int *keyColumn);
+        short int randomStreet(int *keyRow, int *keyColumn);
         bool isFirstElement(Numero *adreess);
-        void makeDecision(int *keyRow, int *keyColumn, int currentRow, int currentColumn);
+        void makeDecision(int keyRow, int keyColumn);
         /************************************************************** FINAL METODOS */
 };
 

@@ -6,7 +6,6 @@ Matriz::Matriz(){
     this->tamanhoColuna = 0;
     this->linha = 0;
     this->coluna = 0;
-    this->proximo = NULL;
     this->visit = false;
 }
 
@@ -19,7 +18,6 @@ Matriz::Matriz(short int numeroLinha, short int numeroColuna){
     }
     this->linha = 0;
     this->coluna = 0;
-    this->proximo = NULL;
     this->visit = false;
 }
 /******************************************************************************************** FINAL CONSTRUTORES */
@@ -68,22 +66,6 @@ void Matriz::setColuna(short int newColuna){
     this->coluna = newColuna;
 }
 
-Matriz *Matriz::getProximo(){
-    return this->proximo;
-}
-
-void Matriz::setProximo(Matriz *newProximo){
-    this->proximo = newProximo;
-}
-
-Matriz *Matriz::getAnterior(){
-   return this->anterior;
-}
-
-void Matriz::setAnterior(Matriz *newAnterior){
-    this->anterior = newAnterior;
-}
-
 Numero *Matriz::getLastVisit(){
     return this->lastVisit;
 }
@@ -93,7 +75,14 @@ void Matriz::setLastVisit(Numero *newLastVisit){
 }
 
 bool Matriz::getVisit(){
-    return this->visit;
+	for(int i=0;i<this->tamanhoLinha;i++){
+        for(int j=0;j<this->tamanhoColuna;j++){
+            if(this->matriz[i][j].getVisit() == true){
+				return true;            	
+			}
+        }
+    }
+    return false;
 }
 
 void Matriz::setVisit(bool newVisit){
@@ -150,30 +139,36 @@ void Matriz::createPortals(){
     }
 }
 
-bool Matriz::randomStreet(int *keyRow, int *keyColumn){
+short int Matriz::randomStreet(int *keyRow, int *keyColumn){
     srand(time(0));
+    this->matriz[*keyRow][*keyColumn].setVisit(true);
     int currentRow = *keyRow, currentColumn = *keyColumn;
-    makeDecision(keyRow, keyColumn, currentRow, currentColumn);
-    while(true){
-    	currentRow = *keyRow;
-		currentColumn = *keyColumn;
-		this->lastVisit = &this->matriz[*keyRow][*keyColumn];
-		this->lastVisit->setVisit(true);
-    	do{
-    		*keyRow += (-1+rand()%3);
-	    	*keyColumn += (-1+rand()%3);	
-		}while((*keyRow  == currentRow && *keyColumn == currentColumn) || (&this->matriz[*keyRow][*keyColumn] == this->lastVisit));
-	    if(*keyColumn < 0  && (*keyRow >=0 && *keyRow <= this->tamanhoLinha-1)){     // -----> MATRIZ ANTERIOR
-	        *keyColumn = this->tamanhoColuna-1;
-	        return false;
-	    }
-	    else if(*keyColumn == this->tamanhoColuna  && (*keyRow >=0 && *keyRow <= this->tamanhoLinha-1)){     // -----> MATRIZ POSTERIOR
-	        *keyColumn = 0;
-	        return true;
-	    }
-	    makeDecision(keyRow, keyColumn, currentRow, currentColumn);
+    *keyRow += (-1+rand()%3);
+	*keyColumn += (-1+rand()%3);
+	if((currentRow == *keyRow) && (currentColumn == *keyColumn)){ //	CAIU ONDE JA ESTAVA
+		return randomStreet(keyRow, keyColumn);
 	}
-    return NULL;
+	else if(*keyRow == -1 && (*keyColumn >= 0 && *keyColumn <= this->tamanhoColuna-1)){ //	SAIU DA MATRIZ PELA BORDA SUPERIOR
+		return 1;
+	}
+	else if((*keyRow >=0 && *keyRow <= this->tamanhoLinha-1) && *keyColumn == this->tamanhoColuna){ //	SAIU DA MATRIZ PELA BORDA DIREITA
+		return 2;
+	}
+	else if(*keyRow == this->tamanhoLinha && (*keyColumn >= 0 && *keyColumn <= this->tamanhoColuna-1)){ //	SAIU DA MATRIZ PELA BORDA INFERIOR
+		return 3;
+	}
+	else if((*keyRow >=0 && *keyRow <= this->tamanhoLinha-1) && *keyColumn == -1){ //	SAIU DA MATRIZ PELA BORDA ESQUERDA
+		return 4;
+	}
+	else if((*keyRow >= 0 && *keyRow <= this->tamanhoLinha-1) && (*keyColumn >= 0 && *keyColumn <= this->tamanhoColuna-1)){ //	ESTA NA MATRIZ
+		return 5;
+	}
+	else if((*keyRow == -1 && *keyColumn == -1) || (*keyRow == this->tamanhoLinha && *keyColumn == this->tamanhoColuna) || (*keyRow == -1 && *keyColumn == this->tamanhoColuna) || (*keyRow == this->tamanhoLinha && *keyColumn == -1)){ //	SAIU PARA ALGUMA QUINA
+		*keyRow = currentRow;
+		*keyColumn = currentColumn;
+		return randomStreet(keyRow, keyColumn);
+	}
+	return 0;
 }
 
 bool Matriz::isFirstElement(Numero *adreess){
@@ -183,23 +178,8 @@ bool Matriz::isFirstElement(Numero *adreess){
     return false;
 }
 
-void Matriz::makeDecision(int *keyRow, int *keyColumn, int currentRow, int currentColumn){
-	if(*keyRow < 0){
-		*keyRow = currentRow;
-		*keyColumn = currentColumn;
-		randomStreet(keyRow, keyColumn);
-	}
-	else if (*keyRow == this->tamanhoLinha){       // -----> CAIU FORA PELAS BORDAS HORIZONTAIS
-	    *keyRow = currentRow;
-		*keyColumn = currentColumn;
-		randomStreet(keyRow, keyColumn);
-	}
-	else if(&this->matriz[*keyRow][*keyColumn] == this->lastVisit){
-		// NÃO FAZ NADA
-	}
-	else{
-		this->matriz[*keyRow][*keyColumn] = 0;
-		print();	
-	}
+void Matriz::makeDecision(int keyRow, int keyColumn){
+	this->matriz[keyRow][keyColumn].setValor(0);
+	print();
 }
 /******************************************************************************************** FINAL METODOS */
