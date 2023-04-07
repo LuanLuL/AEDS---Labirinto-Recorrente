@@ -9,6 +9,7 @@ using namespace std;
 class No{
     private:
         string valor;
+        bool visit;
         No *proximo;
         No *anterior;
 
@@ -26,6 +27,8 @@ class No{
         No *getAnterior();
         void setAnterior(No *newAnterior);
         No *getLastVisit();
+        bool getVisit();
+        void setVisit(bool newVisit);  
         /*************************************************************** FINAL GETTERS AND SETTERS */
 
         /*************************************************************** INICIO METODOS */
@@ -34,4 +37,5 @@ class No{
 };
 
 #endif
+
 

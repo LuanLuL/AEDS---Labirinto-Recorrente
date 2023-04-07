@@ -24,6 +24,7 @@ class Lista{
         void setFinal(No *newFinal);
         int getCount();
         void setCount(int newCount);
+        void setVisit(string name);
         /************************************************** FINAL GETTERS AND SETTERS */
 
         /************************************************** INICIO METODOS */
@@ -34,11 +35,10 @@ class Lista{
         bool empty();
         void print();
         void printInvertido();
-        // void solveMaze();
-        // bool allVisit();
-        // bool finishSolveMaze(Matriz matriz, int keyRow, int keyColumn);
+        bool allVisit();
         /************************************************** FINAL METODOS */ 
 };
 
 #endif
+
 

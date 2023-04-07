@@ -5,12 +5,14 @@ No::No(){
     this->valor = "";
     this->proximo = NULL;
     this->anterior = NULL;
+    this->visit = false;
 }
 
 No::No(string first){
     this->valor = first;
     this->proximo = NULL;
     this->anterior = NULL;
+    this->visit = false;
 }
 /******************************************************************************************** FINAL CONSTRUTORES */
 
@@ -32,11 +34,19 @@ void No::setProximo(No *newProximo){
 }
 
 No *No::getAnterior(){
-   return this->anterior;
+    return this->anterior;
 }
 
 void No::setAnterior(No *newAnterior){
     this->anterior = newAnterior;
+}
+
+bool No::getVisit(){
+	return this->visit;
+}
+
+void No::setVisit(bool newVisit){
+    this->visit = newVisit;
 }
 /******************************************************************************************** FINAL GETTERS AND SETTERS */
 
@@ -45,3 +55,4 @@ void No::print(){
     cout << this->valor;
 }
 /******************************************************************************************** FINAL METODOS */
+

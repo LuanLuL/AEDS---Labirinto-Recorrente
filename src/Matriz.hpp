@@ -2,8 +2,7 @@
 #define __MATRIZ_HPP
 
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <random>
 #include "Numero.hpp"
 using namespace std;
 
@@ -36,14 +35,16 @@ class Matriz{
         /*************************************************************** FINAL GETTERS AND SETTERS */
 
         /*************************************************************** INICIO METODOS */
-        void addNumber(short int number);
+        void addNumber(short int number, bool visit);
         void print();
         void createPortals();
-        short int randomStreet(int *keyRow, int *keyColumn);
+        short int randomStreet(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn);
+        int randomNumber(int breaksStart, int breaksEnd);
         bool isFirstElement(Numero *adreess);
         void makeDecision(int keyRow, int keyColumn);
         /************************************************************** FINAL METODOS */
 };
 
 #endif
+
 

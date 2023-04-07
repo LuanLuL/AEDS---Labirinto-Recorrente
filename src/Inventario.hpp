@@ -25,8 +25,12 @@ class Inventario{
 
         /************************************************** INICIO METODOS */
         void start(string data);
-        void insert(string name, Matriz matrix);
+        void create(string name, Matriz matrix);
+        Matriz retrive(string data);
+        void solveMaze();
+        bool finishSolveMaze(No *currentNo, int keyRow, int keyColumn);
         /************************************************** FINAL METODOS */		
 };
 
 #endif
+

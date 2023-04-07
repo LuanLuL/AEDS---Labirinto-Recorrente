@@ -44,6 +44,16 @@ int Lista::getCount(){
 void Lista::setCount(int newCount){
     this->count = newCount;
 }
+void Lista::setVisit(string name){
+    No *aux = this->inicio;
+    do{
+        if(name == aux->getValor()){
+            aux->setVisit(true);
+            break;
+        }
+        aux = aux->getProximo();
+    }while(aux != this->inicio);
+}
 /************************************************** FINAL GETTERS AND SETTERS */
 
 /************************************************** INICIO METODOS */
@@ -132,7 +142,7 @@ bool Lista::empty(){
 void Lista::print(){
     No *aux = this->inicio;
     if(empty()){
-        cout << "---> A lista n√£o possui elementos!";
+        cout << "---> A lista n„o possui elementos!";
     }
     else{
         do{
@@ -146,7 +156,7 @@ void Lista::print(){
 void Lista::printInvertido(){
     No *aux = this->final;
     if(empty()){
-        cout << "---> A lista n√£o possui elementos!";
+        cout << "---> A lista n„o possui elementos!";
     }
     else{
         do{
@@ -157,61 +167,16 @@ void Lista::printInvertido(){
     }
 }
 
-// void Lista::solveMaze(){
-//     int row = 0, column = 0;
-//     Matriz *matriz = this->inicio;
-//     matriz->makeDecision(row, column);
-//     while(true){ //finishSolveMaze(*matriz, row, column)
-//         switch(matriz->randomStreet(&row, &column)){
-//         	case 1:{
-//         		row = matriz->getAnterior()->getTamanhoLinha()-1;
-//         		matriz = matriz->getAnterior();
-//         		break;	
-// 			}
-// 			case 2:{
-// 				column = 0;
-// 				matriz = matriz->getProximo();
-//         		break;	
-// 			}
-// 			case 3:{
-// 				row = 0;
-//         		matriz = matriz->getProximo();
-//         		break;	
-// 			}
-// 			case 4:{
-// 				column = matriz->getAnterior()->getTamanhoColuna()-1;
-// 				matriz = matriz->getAnterior();
-//         		break;	
-// 			}
-// 			case 5:{
-//         		break;	
-// 			}
-// 			default:{
-// 				cerr << "ERRO...ERRO... Lista.cpp::SolveMaze ...ERRO...ERRO\n\n"; 
-// 				exit(0);
-// 				break;
-// 			}
-// 		}
-// 		matriz->makeDecision(row, column);
-//     }
-// }
-
-// bool Lista::allVisit(){
-// 	Matriz *aux = this->inicio;
-//     do{
-//     	if(aux->getVisit() == false){
-//     		return false;
-// 		}
-//         aux = aux->getProximo();
-//     }while(aux != this->inicio);
-//     return true;	
-// }
-
-// bool Lista::finishSolveMaze(Matriz matriz, int keyRow, int keyColumn){
-//     if(allVisit() && matriz.isFirstElement(&matriz.getMatriz()[keyRow][keyColumn]) && (&matriz == this->inicio)){
-//         return false;
-//     }
-//     return true;
-// }
+bool Lista::allVisit(){
+	No *aux = this->inicio;
+    do{
+    	if(aux->getVisit() == false){
+    		return false;
+		}
+        aux = aux->getProximo();
+    }while(aux != this->inicio);
+    return true;	
+}
 /************************************************** FINAL METODOS */
+
 
