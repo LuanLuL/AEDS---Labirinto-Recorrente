@@ -20,7 +20,6 @@ class Numero{
         bool getVisit();
         void setVisit(bool newVisit);
         /************************************************** FINAL GETTERS AND SETTERS */
-        
 };
 
 #endif

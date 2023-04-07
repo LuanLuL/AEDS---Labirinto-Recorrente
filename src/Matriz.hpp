@@ -9,7 +9,6 @@ using namespace std;
 class Matriz{
     private:
         Numero **matriz;
-        Numero *lastVisit;
         bool visit;
         short int linha, coluna, tamanhoLinha, tamanhoColuna;
     public:
@@ -28,8 +27,6 @@ class Matriz{
         void setLinha(short int newLinha);
         short int getColuna();
         void setColuna(short int newColuna);
-        Numero *getLastVisit();
-        void setLastVisit(Numero *newLastVisit);
         bool getVisit();
         void setVisit(bool newVisit);  
         /*************************************************************** FINAL GETTERS AND SETTERS */
@@ -41,7 +38,7 @@ class Matriz{
         short int randomStreet(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn);
         int randomNumber(int breaksStart, int breaksEnd);
         bool isFirstElement(Numero *adreess);
-        void makeDecision(int keyRow, int keyColumn);
+        void allowedEntry(int keyRow, int keyColumn);
         /************************************************************** FINAL METODOS */
 };
 

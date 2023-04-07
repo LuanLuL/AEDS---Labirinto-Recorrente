@@ -66,14 +66,6 @@ void Matriz::setColuna(short int newColuna){
     this->coluna = newColuna;
 }
 
-Numero *Matriz::getLastVisit(){
-    return this->lastVisit;
-}
-
-void Matriz::setLastVisit(Numero *newLastVisit){
-    this->lastVisit = newLastVisit;
-}
-
 bool Matriz::getVisit(){
 	return this->visit;
 }
@@ -150,10 +142,6 @@ void Matriz::createPortals(){
 }
 
 short int Matriz::randomStreet(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn){
-    this->matriz[*keyRow][*keyColumn].setVisit(true);
-    // if(update == true){
-    //     setLastVisit(&this->matriz[*currentRow][*currentColumn]);
-    // }
     *currentRow = *keyRow;
     *currentColumn = *keyColumn;
     *keyRow += randomNumber(-1, 1);
@@ -161,11 +149,6 @@ short int Matriz::randomStreet(int *keyRow, int *keyColumn, int *currentRow, int
 	if((*currentRow == *keyRow) && (*currentColumn == *keyColumn)){ //	CAIU ONDE JA ESTAVA
 		return randomStreet(keyRow, keyColumn, currentRow, currentColumn);
 	}
-    // else if(lastVisit == &this->matriz[*keyRow][*keyColumn]){
-    //     *keyRow = *currentRow;
-	// 	*keyColumn = *currentColumn;
-	// 	return randomStreet(keyRow, keyColumn, currentRow, currentColumn, false);
-    // }
 	else if(*keyRow == -1 && (*keyColumn >= 0 && *keyColumn <= this->tamanhoColuna-1)){ //	SAIU DA MATRIZ PELA BORDA SUPERIOR
 		return 1;
 	}
@@ -202,7 +185,8 @@ bool Matriz::isFirstElement(Numero *adreess){
     return false;
 }
 
-void Matriz::makeDecision(int keyRow, int keyColumn){
+void Matriz::allowedEntry(int keyRow, int keyColumn){
+    this->matriz[keyRow][keyColumn].setVisit(true);
 	this->matriz[keyRow][keyColumn].setValor(0);
 	print();
 }
