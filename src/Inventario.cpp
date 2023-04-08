@@ -74,7 +74,7 @@ void Inventario::create(string name , Matriz matrix){
         if(!outFile){
             throw "../Inventario::insertMatriz(string name) ----> Não foi possível abrir o arquivo de saída";
         }
-        outFile << matrix.getTamanhoLinha() << " " << matrix.getTamanhoColuna() << " " << matrix.getVisit()<< endl;
+        outFile << matrix.getTamanhoLinha() << " " << matrix.getTamanhoColuna() << " " << matrix.getVisit() << endl;
         matrix.createPortals();
         for(int row = 0; row < matrix.getTamanhoLinha(); row++){
             for(int column = 0; column < matrix.getTamanhoColuna(); column++){

@@ -13,12 +13,11 @@ class Person{
         short int health;
         Inventario map;
         Bag bag;
-        Numero * lastVisit;
         int damageTotal;
     public:
         //************************************************** INICIO CONSTRUTORES */
         Person();
-        Person(short int pntsVidas, Inventario labirinto, Bag bag, Numero * ultimoNumero);
+        Person(short int pntsVidas, Inventario labirinto, Bag bag);
         //************************************************** FINAL CONSTRUTORES *
 
         //************************************************** INICIO GETTERS AND SETTERS */
@@ -28,14 +27,12 @@ class Person{
         void setMap(Inventario newMap);
         Bag getBag();
         void setBag(Bag newBag);
-        Numero *getLastVisit();
-        void setLastVisit(Numero *newLastVisit);
         int getDamageTotal();
         void setDamageTotal(int newDamageTotal);
         //************************************************** FINAL GETTERS AND SETTERS */ 
 
         //*************************************************************** INICIO METODOS */
-        void move();
+        void move(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn, Matriz *matix, No *no);
         void regenerateHealth();
         void takesADamage(string data, Matriz matrix);
         void solveMaze();

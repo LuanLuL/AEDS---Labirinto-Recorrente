@@ -53,7 +53,6 @@ bool Bag::addItem(){
 bool Bag::returnHealthPoint(){
     if(this->itens.size() == 4){
         this->itens.clear();
-        this->itens.push_back(this->itens.size() + 1);
         return true;
     }
     return false;

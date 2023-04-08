@@ -142,7 +142,7 @@ bool Lista::empty(){
 void Lista::print(){
     No *aux = this->inicio;
     if(empty()){
-        cout << "---> A lista não possui elementos!";
+        cout << "---> A lista nï¿½o possui elementos!";
     }
     else{
         do{
@@ -156,7 +156,7 @@ void Lista::print(){
 void Lista::printInvertido(){
     No *aux = this->final;
     if(empty()){
-        cout << "---> A lista não possui elementos!";
+        cout << "---> A lista nï¿½o possui elementos!";
     }
     else{
         do{
@@ -178,5 +178,3 @@ bool Lista::allVisit(){
     return true;	
 }
 /************************************************** FINAL METODOS */
-
-

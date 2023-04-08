@@ -142,6 +142,7 @@ void Matriz::createPortals(){
 }
 
 short int Matriz::randomStreet(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn){
+    this->matriz[*keyRow][*keyColumn].setVisit(true);
     *currentRow = *keyRow;
     *currentColumn = *keyColumn;
     *keyRow += randomNumber(-1, 1);
@@ -186,9 +187,8 @@ bool Matriz::isFirstElement(Numero *adreess){
 }
 
 void Matriz::allowedEntry(int keyRow, int keyColumn){
-    this->matriz[keyRow][keyColumn].setVisit(true);
 	this->matriz[keyRow][keyColumn].setValor(0);
-	print();
+	//print();
 }
 /******************************************************************************************** FINAL METODOS */
 

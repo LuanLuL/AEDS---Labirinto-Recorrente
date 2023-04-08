@@ -5,14 +5,12 @@ Person::Person(){
     this->health = 10;
     this->map = Inventario();
     this->bag = Bag();
-    this->lastVisit = new Numero();
 }
 
-Person::Person(short int pntsVidas, Inventario labirinto, Bag bag, Numero *ultimoNumero){
+Person::Person(short int pntsVidas, Inventario labirinto, Bag bag){
     this->health = pntsVidas;
     this->map = labirinto;
     this->bag = bag;
-    this->lastVisit = ultimoNumero;
 }
 //******************************************************************************************** FINAL CONSTRUTORES */
 
@@ -41,14 +39,6 @@ void Person::setBag(Bag newBag){
     this->bag = newBag;
 }
 
-Numero *Person::getLastVisit(){
-    return this->lastVisit;
-}
-
-void Person::setLastVisit(Numero *newLastVisit){
-    this->lastVisit = newLastVisit;
-}
-
 int Person::getDamageTotal(){
     return this->damageTotal;
 }
@@ -60,10 +50,6 @@ void Person::setDamageTotal(int newDamageTotal){
 //******************************************************************************************** FINAL GETTERS AND SETTERS */
 
 //******************************************************************************************** INICIO METODOS */
-void Person::move(){
-
-}
-
 void Person::regenerateHealth(){
     if(health < 10){
         this->health = this->health + 1;
@@ -71,16 +57,15 @@ void Person::regenerateHealth(){
 }
 
 void Person::takesADamage(string data, Matriz matrix){
-    data = data;
-    matrix = matrix;
     if(health > 0){
         this->damageTotal = this->damageTotal + 1;
         this->health = this->health - 1;
     }
     else{ //    O PERSONAGEM MORREU
-        cout << "\n\t************* FIM DE JOGO *************\n\n";
-        cout << "\tO personagem morreu!\n\n\tResultados:\n\n";
-
+        this->map.create(data, matrix);
+        cout << "\nFIM DE JOGO\n\n";
+        cout << "O personagem morreu!\n\nResultados:\n\n";
+        cout << "\n************* FIM *************\n\n";
         exit(0);
     }
 }
@@ -88,9 +73,9 @@ void Person::takesADamage(string data, Matriz matrix){
 void Person::solveMaze(){
     int row = 0, column = 0;
     int currentRow = row, currentColumn = column;
-    No* no = this->map.getLista().getInicio();
+    No *no = this->map.getLista().getInicio();
     Matriz matriz = this->map.retrive("dataset/" + no->getValor());
-    matriz.allowedEntry(row, column);
+    move(&row, &column, &currentRow, &currentColumn, &matriz, no);
     while(finishSolveMaze(no, row, column)){
         switch(matriz.randomStreet(&row, &column, &currentRow, &currentColumn)){
         	case 1:{
@@ -138,7 +123,24 @@ void Person::solveMaze(){
 				break;
 			}
 		}
-		matriz.allowedEntry(row, column);
+		move(&row, &column, &currentRow, &currentColumn, &matriz, no);
+    }
+}
+
+void Person::move(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn, Matriz *matrix, No *no){
+    if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -2){ //   É UMA PAREDE
+        matrix->getMatriz()[*keyRow][*keyColumn].setVisit(true);
+        *keyRow = *currentRow;
+        *keyColumn = *currentColumn;
+    }
+    else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -1){ //  É UM PERIGO
+        takesADamage(no->getValor(), *matrix);
+    }
+    else{
+        if(this->bag.addItem()){
+            regenerateHealth();
+        }
+        matrix->allowedEntry(*keyRow, *keyColumn);
     }
 }
 
