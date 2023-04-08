@@ -12,8 +12,7 @@ int main(){
     Inventario BD = Inventario();
     BD.start("dataset/input.data");
     Bag mochila = Bag();
-    Person luan = Person(10, BD, mochila);
+    Person luan = Person(10, BD, mochila, 0, 0);
     luan.solveMaze();
-    cout << "\n************* FIM *************\n\n";
     return 0;
 }

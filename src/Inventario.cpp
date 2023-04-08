@@ -142,4 +142,18 @@ Matriz Inventario::retrive(string data){
         exit(0);
     }
 }
+
+int Inventario::selectNumbersNotAccess(string data)
+{
+    int numberNotAccess = 0;
+    Matriz mAux = retrive(data);
+    for(int row = 0; row < mAux.getTamanhoLinha()-1; row++){
+        for(int column = 0; column < mAux.getTamanhoColuna()-1; column++){
+            if(mAux.getMatriz()[row][column].getVisit() == false){
+                numberNotAccess = numberNotAccess + 1;
+            }
+        }
+    }
+    return numberNotAccess;
+}
 /******************************************************************************************** FINAL METODOS */

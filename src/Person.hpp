@@ -14,10 +14,11 @@ class Person{
         Inventario map;
         Bag bag;
         int damageTotal;
+        int movetotal;
     public:
         //************************************************** INICIO CONSTRUTORES */
         Person();
-        Person(short int pntsVidas, Inventario labirinto, Bag bag);
+        Person(short int pntsVidas, Inventario labirinto, Bag bag, int nbrDanoTomado, int nbrMovimentoFeito);
         //************************************************** FINAL CONSTRUTORES *
 
         //************************************************** INICIO GETTERS AND SETTERS */
@@ -29,6 +30,8 @@ class Person{
         void setBag(Bag newBag);
         int getDamageTotal();
         void setDamageTotal(int newDamageTotal);
+        int getMoveTotal();
+        void setMoveTotal(int newMoveTotal);
         //************************************************** FINAL GETTERS AND SETTERS */ 
 
         //*************************************************************** INICIO METODOS */
@@ -37,6 +40,7 @@ class Person{
         void takesADamage(string data, Matriz matrix);
         void solveMaze();
         bool finishSolveMaze(No *currentNo, int keyRow, int keyColumn);
+        void printResults(bool isDead);
         /************************************************************** FINAL METODOS */
 };  
 

@@ -199,7 +199,6 @@ bool Matriz::isFirstElement(Numero *adreess){
 
 void Matriz::allowedEntry(int keyRow, int keyColumn){
 	this->matriz[keyRow][keyColumn].setValor(this->matriz[keyRow][keyColumn].getValor() - 1);
-	print();
 }
 /******************************************************************************************** FINAL METODOS */
 
