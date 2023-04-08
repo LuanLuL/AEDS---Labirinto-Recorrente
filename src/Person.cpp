@@ -78,53 +78,39 @@ void Person::solveMaze(){
     move(&row, &column, &currentRow, &currentColumn, &matriz, no);
     while(finishSolveMaze(no, row, column)){
         switch(matriz.randomStreet(&row, &column, &currentRow, &currentColumn)){
-        	case 1:{
-                matriz.setVisit(true);
+        	case 1:
+            case 4:
+            { //    TELETRANSPORTA PARA A MATRIZ ANTERIOR
                 this->map.create("dataset/" + no->getValor(), matriz);
                 no->setVisit(true);
                 no = no->getAnterior();
                 matriz = this->map.retrive("dataset/" + no->getValor());
-        		row = matriz.getTamanhoLinha()-1;
-        		break;	
+                matriz.randomStart(&row, &column, &currentRow, &currentColumn);
+        		break;
 			}
-			case 2:{
-                matriz.setVisit(true);
+			case 2:
+            case 3:
+            { //    TELETRANSPORTA PARA A MATRIZ POSTERIOR
                 this->map.create("dataset/" + no->getValor(), matriz);
                 no->setVisit(true);
                 no = no->getProximo();
                 matriz = this->map.retrive("dataset/" + no->getValor());
-				column = 0;
-        		break;	
-			}
-			case 3:{
-                matriz.setVisit(true);
-                this->map.create("dataset/" + no->getValor(), matriz);
-                no->setVisit(true);
-                no = no->getProximo();
-                matriz = this->map.retrive("dataset/" + no->getValor());
-				row = 0;
-        		break;	
-			}
-			case 4:{
-                matriz.setVisit(true);
-                this->map.create("dataset/" + no->getValor(), matriz);
-                no->setVisit(true);
-                no = no->getAnterior();
-                matriz = this->map.retrive("dataset/" + no->getValor());
-				column = matriz.getTamanhoColuna()-1;
-        		break;	
+				matriz.randomStart(&row, &column, &currentRow, &currentColumn);
+        		break;
 			}
 			case 5:{
-        		break;	
+        		break;
 			}
 			default:{
-				cerr << "ERRO...ERRO... Lista.cpp::SolveMaze ...ERRO...ERRO\n\n"; 
+				cerr << "ERRO...ERRO... Person.cpp::SolveMaze ...ERRO...ERRO\n\n"; 
 				exit(0);
 				break;
 			}
 		}
 		move(&row, &column, &currentRow, &currentColumn, &matriz, no);
     }
+    cout << "\nFIM DE JOGO\n\n";
+    cout << "O  último caminho percorrido possue apenas 0's\n\nResultados:\n\n";
 }
 
 void Person::move(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn, Matriz *matrix, No *no){
@@ -133,20 +119,45 @@ void Person::move(int *keyRow, int *keyColumn, int *currentRow, int *currentColu
         *keyRow = *currentRow;
         *keyColumn = *currentColumn;
     }
+    else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -3){ //  É UM PORTAL PARA MATRIZ ANTERIOR
+        matrix->setVisit(true);
+        this->map.create("dataset/" + no->getValor(), *matrix);
+        no->setVisit(true);
+        no = no->getAnterior();
+        *matrix = this->map.retrive("dataset/" + no->getValor());
+        matrix->randomStart(keyRow, keyColumn, currentRow, currentColumn);
+    }
+    else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -4){ //  É UM PORTAL PARA MATRIZ POSTERIOR
+        matrix->setVisit(true);
+        this->map.create("dataset/" + no->getValor(), *matrix);
+        no->setVisit(true);
+        no = no->getProximo();
+        *matrix = this->map.retrive("dataset/" + no->getValor());
+        matrix->randomStart(keyRow, keyColumn, currentRow, currentColumn);
+    }
     else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -1){ //  É UM PERIGO
         takesADamage(no->getValor(), *matrix);
+        this->bag.setForget(true);
     }
-    else{
+    else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == 0){ //   É UM CAMINHO FINALIZADO
+        // CONTINUA O CAMINHO SEM FAZER NADA
+    }
+    else{ //   É UM CAMINHO NÃO FINALIZADO
         if(this->bag.addItem()){
             regenerateHealth();
         }
+        this->bag.setForget(false);
+        matrix->setVisit(true);
         matrix->allowedEntry(*keyRow, *keyColumn);
     }
 }
 
 bool Person::finishSolveMaze(No *curretNo, int keyRow, int keyColumn){
-    if(this->map.getLista().allVisit() && (keyRow == 0 && keyColumn == 0) && (curretNo == this->map.getLista().getInicio())){
+    if(this->map.getLista().allVisit() && (keyRow == 0 && keyColumn == 0) && (curretNo == this->map.getLista().getInicio()) && this->bag.isForget()){
         return false;
+    }
+    if((curretNo == this->map.getLista().getInicio()) && (keyRow == 0 && keyColumn == 0)){ //   RESETA A CONTAGEM DO CAMINHO SEMPRE QUE VOLTAR NO INICIO
+        this->bag.setForget(true);
     }
     return true;
 }

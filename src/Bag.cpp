@@ -45,7 +45,6 @@ bool Bag::addItem(){
     if(this->itens.size() < 4){
         this->itensTotal = itensTotal + 1;
         this->itens.push_back(this->itens.size() + 1);
-        this->forget = false;
     }
     return returnHealthPoint();
 }

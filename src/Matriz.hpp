@@ -36,6 +36,7 @@ class Matriz{
         void print();
         void createPortals();
         short int randomStreet(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn);
+        void randomStart(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn);
         int randomNumber(int breaksStart, int breaksEnd);
         bool isFirstElement(Numero *adreess);
         void allowedEntry(int keyRow, int keyColumn);

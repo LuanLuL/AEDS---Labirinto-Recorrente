@@ -173,6 +173,17 @@ short int Matriz::randomStreet(int *keyRow, int *keyColumn, int *currentRow, int
 	return 0;
 }
 
+void Matriz::randomStart(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn){
+    *keyRow = randomNumber(0, this->tamanhoLinha-1);
+	*keyColumn = randomNumber(0, this->tamanhoColuna-1);
+    if(this->matriz[*keyRow ][*keyColumn].getValor() == -2 || this->matriz[*keyRow ][*keyColumn].getValor() == -3 || this->matriz[*keyRow ][*keyColumn].getValor() == -4){
+        return randomStart(keyRow, keyColumn, currentRow, currentColumn);
+    }
+    *currentRow = *keyRow;
+    *currentColumn = *keyColumn;
+    this->matriz[*keyRow][*keyColumn].setVisit(true);
+}
+
 int Matriz::randomNumber(int breaksStart, int breaksEnd){
     random_device rd;
     uniform_int_distribution<int> dist(breaksStart, breaksEnd);
@@ -187,8 +198,8 @@ bool Matriz::isFirstElement(Numero *adreess){
 }
 
 void Matriz::allowedEntry(int keyRow, int keyColumn){
-	this->matriz[keyRow][keyColumn].setValor(0);
-	//print();
+	this->matriz[keyRow][keyColumn].setValor(this->matriz[keyRow][keyColumn].getValor() - 1);
+	print();
 }
 /******************************************************************************************** FINAL METODOS */
 

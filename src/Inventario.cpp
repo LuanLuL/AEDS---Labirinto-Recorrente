@@ -61,6 +61,9 @@ void Inventario::start(string data){
                 }
             }
         }
+        if(this->lista.size() == 1){
+            this->lista.getInicio()->setVisit(true);
+        }
         inFile.close();
     }
     catch(const char *msg){

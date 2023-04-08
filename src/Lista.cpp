@@ -73,13 +73,15 @@ int Lista::size(){
 void Lista::insertInicio(string newString){
     this->count = this->count + 1;
     No *newNo = new No(newString);
-    newNo->setAnterior(this->final);
+   
     if(empty()){
         this->inicio = newNo;
         this->final = newNo;
+        newNo->setAnterior(this->final);
         newNo->setProximo(this->inicio);
     }
     else{
+        newNo->setAnterior(this->final);
         newNo->setProximo(this->inicio);
         this->inicio->setAnterior(newNo);
         this->inicio = newNo;
@@ -90,17 +92,18 @@ void Lista::insertInicio(string newString){
 void Lista::insertFinal(string newString){
     this->count = this->count + 1;
     No *newNo = new No(newString);
-    newNo->setProximo(this->inicio);
     if(empty()){
-        newNo->setAnterior(this->final);
         this->inicio = newNo;
         this->final = newNo;
+        newNo->setProximo(this->inicio);
+        newNo->setAnterior(this->final);
     }
     else{
+        newNo->setProximo(this->inicio);
         newNo->setAnterior(this->final);
         this->final->setProximo(newNo);
         this->final = newNo;
-        this->inicio->setAnterior(final);
+        this->inicio->setAnterior(this->final);
     }
 }
 
