@@ -69,10 +69,8 @@ void Person::regenerateHealth(){
 
 void Person::takesADamage(string data, Matriz matrix){
     this->damageTotal = this->damageTotal + 1;
-    if(health > 0){
-        this->health = this->health - 1;
-    }
-    else{ //    O PERSONAGEM MORREU
+    this->health = this->health - 1;
+    if(health == 0){ //    O PERSONAGEM MORREU
         this->map.create("dataset/" + data, matrix);
         printResults(true);
         exit(0);
