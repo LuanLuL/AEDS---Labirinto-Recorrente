@@ -145,7 +145,7 @@ bool Lista::empty(){
 void Lista::print(){
     No *aux = this->inicio;
     if(empty()){
-        cout << "---> A lista n�o possui elementos!";
+        cout << "---> A lista não possui elementos!";
     }
     else{
         do{
@@ -159,7 +159,7 @@ void Lista::print(){
 void Lista::printInvertido(){
     No *aux = this->final;
     if(empty()){
-        cout << "---> A lista n�o possui elementos!";
+        cout << "---> A lista nãoo possui elementos!";
     }
     else{
         do{

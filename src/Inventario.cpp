@@ -99,7 +99,7 @@ Matriz Inventario::retrive(string data){
         fstream inFile;
         inFile.open(data.c_str());
         if(!inFile){
-            throw "../Inventario::retrive(string data) ---> N�o foi poss�vel abrir o arquivo de entrada";
+            throw "../Inventario::retrive(string data) ---> Não foi possível abrir o arquivo de entrada";
         }
         string numberStr;
         int aux = 0, numberInt, i = 0;
@@ -146,7 +146,7 @@ Matriz Inventario::retrive(string data){
 int Inventario::selectNumbersNotAccess(string data)
 {
     int numberNotAccess = 0;
-    Matriz mAux = retrive(data);
+    Matriz mAux = retrive("dataset/" + data);
     for(int row = 0; row < mAux.getTamanhoLinha()-1; row++){
         for(int column = 0; column < mAux.getTamanhoColuna()-1; column++){
             if(mAux.getMatriz()[row][column].getVisit() == false){

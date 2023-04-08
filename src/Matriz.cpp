@@ -142,7 +142,6 @@ void Matriz::createPortals(){
 }
 
 short int Matriz::randomStreet(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn){
-    this->matriz[*keyRow][*keyColumn].setVisit(true);
     *currentRow = *keyRow;
     *currentColumn = *keyColumn;
     *keyRow += randomNumber(-1, 1);

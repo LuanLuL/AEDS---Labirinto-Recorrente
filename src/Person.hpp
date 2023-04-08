@@ -14,7 +14,7 @@ class Person{
         Inventario map;
         Bag bag;
         int damageTotal;
-        int movetotal;
+        int moveTotal;
     public:
         //************************************************** INICIO CONSTRUTORES */
         Person();
