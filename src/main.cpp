@@ -13,6 +13,7 @@ int main(){
     BD.start("dataset/input.data");
     Bag mochila = Bag();
     Person luan = Person(10, BD, mochila, 0, 0);
+    cout << "\nResolvendo o labirinto recorrente ... \n\n";
     luan.solveMaze();
     return 0;
 }

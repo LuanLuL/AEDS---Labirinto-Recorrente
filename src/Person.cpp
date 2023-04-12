@@ -83,8 +83,9 @@ void Person::solveMaze(){
     int row = 0, column = 0;
     int currentRow = row, currentColumn = column;
     matriz.randomStart(&row, &column, &currentRow, &currentColumn);
-    move(&row, &column, &currentRow, &currentColumn, &matriz, no);
-    while(finishSolveMaze(no, row, column)){
+    int rowStart = row, columnStart = column;
+    move(&row, &column, &currentRow, &currentColumn, &matriz, &no);
+    while(finishSolveMaze(no, row, column, rowStart, columnStart)){
         switch(matriz.randomStreet(&row, &column, &currentRow, &currentColumn)){
         	case 1:
             case 4:
@@ -115,12 +116,12 @@ void Person::solveMaze(){
 				break;
 			}
 		}
-		move(&row, &column, &currentRow, &currentColumn, &matriz, no);
+		move(&row, &column, &currentRow, &currentColumn, &matriz, &no);
     }
     printResults(false);
 }
 
-void Person::move(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn, Matriz *matrix, No *no){
+void Person::move(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn, Matriz *matrix, No **no){
     matrix->getMatriz()[*currentRow][*currentColumn].setVisit(true);
     if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -2){ //   É UMA PAREDE
         *keyRow = *currentRow;
@@ -128,26 +129,28 @@ void Person::move(int *keyRow, int *keyColumn, int *currentRow, int *currentColu
     }
     else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -3){ //  É UM PORTAL PARA MATRIZ ANTERIOR
         this->moveTotal = this->moveTotal + 1;
+        matrix->getMatriz()[*keyRow][*keyColumn].setVisit(true);
         matrix->setVisit(true);
-        this->map.create("dataset/" + no->getValor(), *matrix);
-        no->setVisit(true);
-        no = no->getAnterior();
-        *matrix = this->map.retrive("dataset/" + no->getValor());
+        this->map.create("dataset/" + (*no)->getValor(), *matrix);
+        (*no)->setVisit(true);
+        (*no) = (*no)->getAnterior();
+        *matrix = this->map.retrive("dataset/" + (*no)->getValor());
         matrix->randomStart(keyRow, keyColumn, currentRow, currentColumn);
     }
     else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -4){ //  É UM PORTAL PARA MATRIZ POSTERIOR
         this->moveTotal = this->moveTotal + 1;
+        matrix->getMatriz()[*keyRow][*keyColumn].setVisit(true);
         matrix->setVisit(true);
-        this->map.create("dataset/" + no->getValor(), *matrix);
-        no->setVisit(true);
-        no = no->getProximo();
-        *matrix = this->map.retrive("dataset/" + no->getValor());
+        this->map.create("dataset/" + (*no)->getValor(), *matrix);
+        (*no)->setVisit(true);
+        (*no) = (*no)->getProximo();
+        *matrix = this->map.retrive("dataset/" + (*no)->getValor());
         matrix->randomStart(keyRow, keyColumn, currentRow, currentColumn);
     }
     else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -1){ //  É UM PERIGO
         this->moveTotal = this->moveTotal + 1;
-        this->bag.setForget(true);
-        takesADamage(no->getValor(), *matrix);
+        //this->bag.setForget(true);
+        takesADamage((*no)->getValor(), *matrix);
     }
     else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == 0){ //   É UM CAMINHO FINALIZADO
         // CONTINUA O CAMINHO SEM FAZER NADA
@@ -164,11 +167,11 @@ void Person::move(int *keyRow, int *keyColumn, int *currentRow, int *currentColu
     }
 }
 
-bool Person::finishSolveMaze(No *curretNo, int keyRow, int keyColumn){
-    if(this->map.getLista().allVisit() && (keyRow == 0 && keyColumn == 0) && (curretNo == this->map.getLista().getInicio()) && this->bag.isForget()){
+bool Person::finishSolveMaze(No *curretNo, int keyRow, int keyColumn, int rowStart, int columnStart){
+    if(this->map.getLista().allVisit() && (keyRow == rowStart && keyColumn == columnStart) && (curretNo == this->map.getLista().getInicio()) && this->bag.isForget()){
         return false;
     }
-    if((curretNo == this->map.getLista().getInicio()) && (keyRow == 0 && keyColumn == 0)){ //   RESETA A CONTAGEM DO CAMINHO SEMPRE QUE VOLTAR NO INICIO
+    if((curretNo == this->map.getLista().getInicio()) && (keyRow == rowStart && keyColumn == columnStart)){ //   RESETA A CONTAGEM DO CAMINHO SEMPRE QUE VOLTAR NO INICIO
         this->bag.setForget(true);
     }
     return true;

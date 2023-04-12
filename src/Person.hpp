@@ -35,11 +35,11 @@ class Person{
         //************************************************** FINAL GETTERS AND SETTERS */ 
 
         //*************************************************************** INICIO METODOS */
-        void move(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn, Matriz *matix, No *no);
+        void move(int *keyRow, int *keyColumn, int *currentRow, int *currentColumn, Matriz *matix, No **no);
         void regenerateHealth();
         void takesADamage(string data, Matriz matrix);
         void solveMaze();
-        bool finishSolveMaze(No *currentNo, int keyRow, int keyColumn);
+        bool finishSolveMaze(No *currentNo, int keyRow, int keyColumn, int rowStart, int columnStart);
         void printResults(bool isDead);
         /************************************************************** FINAL METODOS */
 };  

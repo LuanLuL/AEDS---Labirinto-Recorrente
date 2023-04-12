@@ -106,7 +106,8 @@ Matriz Inventario::retrive(string data){
         bool visit;
         while (!inFile.eof()){
             if(aux == 0){
-                getline(inFile, numberStr);Matriz newM(atoi(&numberStr.at(0)), atoi(&numberStr.at(2)));
+                getline(inFile, numberStr);
+                Matriz newM(atoi(&numberStr.at(0)), atoi(&numberStr.at(2)));
                 if(atoi(&numberStr.at(4)) == 0){
                     newM.setVisit(false);
                 }
