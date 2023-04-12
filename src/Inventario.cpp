@@ -77,7 +77,7 @@ void Inventario::create(string name , Matriz matrix){
         if(!outFile){
             throw "../Inventario::insertMatriz(string name) ----> Não foi possível abrir o arquivo de saída";
         }
-        outFile << matrix.getTamanhoLinha() << " " << matrix.getTamanhoColuna() << " " << matrix.getVisit() << endl;
+        outFile << matrix.getTamanhoLinha() << " " << matrix.getTamanhoColuna() << endl;
         matrix.createPortals();
         for(int row = 0; row < matrix.getTamanhoLinha(); row++){
             for(int column = 0; column < matrix.getTamanhoColuna(); column++){
@@ -108,13 +108,6 @@ Matriz Inventario::retrive(string data){
             if(aux == 0){
                 getline(inFile, numberStr);
                 Matriz newM(atoi(&numberStr.at(0)), atoi(&numberStr.at(2)));
-                if(atoi(&numberStr.at(4)) == 0){
-                    newM.setVisit(false);
-                }
-                else{
-                    newM.setVisit(true);
-                    lista.setVisit(data);
-                }
                 returnMatriz = newM;
                 aux = aux + 1;
             }

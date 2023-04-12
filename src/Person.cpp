@@ -130,7 +130,6 @@ void Person::move(int *keyRow, int *keyColumn, int *currentRow, int *currentColu
     else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -3){ //  É UM PORTAL PARA MATRIZ ANTERIOR
         this->moveTotal = this->moveTotal + 1;
         matrix->getMatriz()[*keyRow][*keyColumn].setVisit(true);
-        matrix->setVisit(true);
         this->map.create("dataset/" + (*no)->getValor(), *matrix);
         (*no)->setVisit(true);
         (*no) = (*no)->getAnterior();
@@ -140,7 +139,6 @@ void Person::move(int *keyRow, int *keyColumn, int *currentRow, int *currentColu
     else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -4){ //  É UM PORTAL PARA MATRIZ POSTERIOR
         this->moveTotal = this->moveTotal + 1;
         matrix->getMatriz()[*keyRow][*keyColumn].setVisit(true);
-        matrix->setVisit(true);
         this->map.create("dataset/" + (*no)->getValor(), *matrix);
         (*no)->setVisit(true);
         (*no) = (*no)->getProximo();
@@ -162,16 +160,16 @@ void Person::move(int *keyRow, int *keyColumn, int *currentRow, int *currentColu
         if(this->bag.addItem()){
             regenerateHealth();
         }
-        matrix->setVisit(true);
         matrix->allowedEntry(*keyRow, *keyColumn);
     }
 }
 
 bool Person::finishSolveMaze(No *curretNo, int keyRow, int keyColumn, int rowStart, int columnStart){
-    if(this->map.getLista().allVisit() && (keyRow == rowStart && keyColumn == columnStart) && (curretNo == this->map.getLista().getInicio()) && this->bag.isForget()){
-        return false;
-    }
-    if((curretNo == this->map.getLista().getInicio()) && (keyRow == rowStart && keyColumn == columnStart)){ //   RESETA A CONTAGEM DO CAMINHO SEMPRE QUE VOLTAR NO INICIO
+    if(this->map.getLista().allVisit() && (keyRow == rowStart && keyColumn == columnStart) && (curretNo == this->map.getLista().getInicio())){
+        if(this->bag.isForget()){
+            return false;
+        }
+        this->map.getLista().setAllVisit(false);
         this->bag.setForget(true);
     }
     return true;

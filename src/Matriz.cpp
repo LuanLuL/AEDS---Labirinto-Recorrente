@@ -6,7 +6,6 @@ Matriz::Matriz(){
     this->tamanhoColuna = 0;
     this->linha = 0;
     this->coluna = 0;
-    this->visit = false;
 }
 
 Matriz::Matriz(short int numeroLinha, short int numeroColuna){
@@ -18,7 +17,6 @@ Matriz::Matriz(short int numeroLinha, short int numeroColuna){
     }
     this->linha = 0;
     this->coluna = 0;
-    this->visit = false;
 }
 /******************************************************************************************** FINAL CONSTRUTORES */
 
@@ -64,14 +62,6 @@ short int Matriz::getColuna(){
 
 void Matriz::setColuna(short int newColuna){
     this->coluna = newColuna;
-}
-
-bool Matriz::getVisit(){
-	return this->visit;
-}
-
-void Matriz::setVisit(bool newVisit){
-    this->visit = newVisit;
 }
 /******************************************************************************************** FINAL GETTERS AND SETTERS */
 

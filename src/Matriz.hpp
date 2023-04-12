@@ -9,7 +9,6 @@ using namespace std;
 class Matriz{
     private:
         Numero **matriz;
-        bool visit;
         short int linha, coluna, tamanhoLinha, tamanhoColuna;
     public:
         /*************************************************************** INICIO CONSTRUTORES */
@@ -27,8 +26,6 @@ class Matriz{
         void setLinha(short int newLinha);
         short int getColuna();
         void setColuna(short int newColuna);
-        bool getVisit();
-        void setVisit(bool newVisit);  
         /*************************************************************** FINAL GETTERS AND SETTERS */
 
         /*************************************************************** INICIO METODOS */

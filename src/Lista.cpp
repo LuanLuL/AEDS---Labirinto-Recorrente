@@ -180,4 +180,11 @@ bool Lista::allVisit(){
     }while(aux != this->inicio);
     return true;	
 }
+void Lista::setAllVisit(bool value){
+    No *aux = this->inicio;
+    do{
+    	aux->setVisit(value);
+        aux = aux->getProximo();
+    }while(aux != this->inicio);
+}
 /************************************************** FINAL METODOS */
