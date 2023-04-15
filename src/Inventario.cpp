@@ -150,4 +150,71 @@ int Inventario::selectNumbersNotAccess(string data)
     }
     return numberNotAccess;
 }
+
+void Inventario::createOutPut(){
+    try{
+        fstream inFile;
+        ofstream outFile ("dataset/output.data"); 
+        if(!outFile){
+            throw "../Inventario::createOutPut() ----> Não foi possível abrir o arquivo de saída";
+        }
+        No *noAux = this->lista.getInicio();
+        string numberStr;
+        int aux = 0, aux2 = 0, tamanhoLinha = 0, tamanhoColuna = 0, limite = 0, i = 1;
+        do{
+            inFile.open(("dataset/" + noAux->getValor()).c_str());
+            if(!inFile){
+                throw "../Inventario::createOutPut() ---> Não foi possível abrir o arquivo de entrada";
+            }            
+            while (!inFile.eof()){
+                if(aux == 0){
+                    getline(inFile, numberStr);
+                    if(aux2 == 0){
+                        tamanhoLinha = atoi(&numberStr.at(0));
+                        tamanhoColuna = atoi(&numberStr.at(2));
+                        outFile << tamanhoLinha << " " << tamanhoColuna  << " " << this->lista.getCount() << endl;
+                        aux2 = aux2 + 1;
+                    }
+                    aux = aux + 1;
+                }
+                else{
+                    inFile >> numberStr;
+                    if(i % 2 == 0){
+                        if(numberStr == "-2" || numberStr == "-3" || numberStr == "-4"){
+                            outFile << "# ";
+                        }
+                        else if(numberStr == "-1"){
+                            outFile << "* ";
+                        }
+                        else{
+                            outFile << numberStr << " ";
+                        }
+                        limite++;
+                        if(i % (tamanhoColuna * 2) == 0){
+                            outFile << endl;
+                        }
+                        if(limite == (tamanhoLinha * tamanhoColuna) && noAux != this->lista.getFinal()){
+                            aux = 0;
+                            limite = 0;
+                            outFile << endl;
+                            i = 1;
+                            break;
+                        }
+                    }
+                    else{
+                       // FAZ NADA 
+                    }
+                    i++;
+                }
+            }
+            inFile.close();
+            remove(("dataset/" + noAux->getValor()).c_str());
+            noAux = noAux->getProximo();
+        }while(noAux != this->lista.getInicio());  
+    }
+    catch(const char *msg){
+        cerr << "\n\n" << msg << "\n\n";
+        exit(0);
+    }
+}
 /******************************************************************************************** FINAL METODOS */

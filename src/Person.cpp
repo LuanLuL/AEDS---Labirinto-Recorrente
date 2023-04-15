@@ -147,7 +147,6 @@ void Person::move(int *keyRow, int *keyColumn, int *currentRow, int *currentColu
     }
     else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == -1){ //  É UM PERIGO
         this->moveTotal = this->moveTotal + 1;
-        //this->bag.setForget(true);
         takesADamage((*no)->getValor(), *matrix);
     }
     else if(matrix->getMatriz()[*keyRow][*keyColumn].getValor() == 0){ //   É UM CAMINHO FINALIZADO
@@ -169,7 +168,6 @@ bool Person::finishSolveMaze(No *curretNo, int keyRow, int keyColumn, int rowSta
         if(this->bag.isForget()){
             return false;
         }
-        this->map.getLista().setAllVisit(false);
         this->bag.setForget(true);
     }
     return true;
@@ -194,5 +192,6 @@ void Person::printResults(bool isDead){
     }while(noAux != this->map.getLista().getInicio());
     cout << "\n\nd) Quantidade de perigos enfrentados ao decorrer do percurso: " << this->damageTotal << endl;
     cout << "\n************* FIM *************\n\n";
+    this->map.createOutPut();
 }
 //******************************************************************************************** FINAL METODOS */

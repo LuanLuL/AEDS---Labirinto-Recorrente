@@ -36,7 +36,6 @@ class Lista{
         void print();
         void printInvertido();
         bool allVisit();
-        void setAllVisit(bool value);
         /************************************************** FINAL METODOS */ 
 };
 

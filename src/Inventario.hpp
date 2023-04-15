@@ -28,6 +28,7 @@ class Inventario{
         void create(string name, Matriz matrix);
         Matriz retrive(string data);
         int selectNumbersNotAccess(string data);
+        void createOutPut();
         /************************************************** FINAL METODOS */		
 };
 
