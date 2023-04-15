@@ -7,10 +7,10 @@
 <section>
     <h2>🛠 Problemática</h2>
     <p>
-        Após produzir um trabalho de aquecimento que envolvia o caminhamento em matrizes (<a href="https://github.com/LuanLuL/AEDS---Caminho-Guloso">AEDS: Caminho-Guloso</a>), está na hora de incluir nesse processo execuções mais elaboradas, as quais nos permita analisar o custo computacional de todo o processo. Nessa perspectiva, o problema do Labirinto Recorrente consiste em um personagem que se encontra perdido em um labirinto, o qual é compreendido por nós como sendo uma matriz cuja posição de sua localização é dada por um elemento (x, y) dentro dessa estrutura. 
+       Após produzir um trabalho de aquecimento que envolvia o caminhamento em matrizes (<a href="https://github.com/LuanLuL/AEDS---Caminho-Guloso">AEDS: Caminho-Guloso</a>), está na hora de incluir nesse processo execuções mais elaboradas, as quais nos permita analisar o custo computacional de todo o processo. Nessa perspectiva, o problema do Labirinto Recorrente consiste em um personagem que se encontra perdido em um labirinto, o qual é composto por várias matrizes quadradas de mesma proporção, cuja posição de sua localização é dada por um elemento (x, y) dentro dessa estrutura.
     </p>
     <p>
-        O objetivo principal do personagem é percorrer as matrizes até que o seu último caminho se torne zero. Ou seja, todos os elementos percorridos desde o elemento inicial até seu reencontro devem possuir o valor zero. No final é preciso apresentar como resultado: 
+        O objetivo principal do personagem é atravessar todas as matrizes que compõem o labirinto até que o seu último caminho se torne zero. Ou seja, todos os elementos percorridos desde o elemento inicial até seu reencontro devem possuir o valor zero. Após isso, é preciso apresentar como resultado final: 
     </p>
     <ol type="a">
         <li>Quantidade de casas que foram percorridas ao todo;</li>
@@ -56,8 +56,21 @@
         <p>
             Basicamente, a parte principal do software consiste em uma classe que realiza o gerenciamento de arquivos DATA e dois objetos com a finalidade de representar o personagem e o labirinto. As demais classes auxiliam nos métodos importantes do sistema, guardando e fornecendo informações.
         </p>
+    </div>
+    <div>
+        <h3>📁 Estouro de memória</h3>
         <p>
-            Sabe-se que os dados de entrada do labirinto são inseridos através do arquivo DATA <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>. Nesse sentido, o usuario tem a possibilidade de inserir matrizes do tamanho que desejar. Contudo, se ao acaso for introduzido matrizes muito grandes, o sistema pode apresentar erros ao tentar carregar um número excessivo de dados simultaneamente. Para solucionar essa dificuldade, a classe <i>Inventario</i> foi criada. Durante o processamento do algoritmo, está classe é responsável por separar as matrizes, de forma que apenas uma esteja alocada na memória do sistema por vez.
+            Sabe-se que os dados de entrada do labirinto são inseridos através do arquivo DATA <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>. Nesse sentido, o usuario tem a possibilidade de inserir matrizes do tamanho que desejar. Contudo, se ao acaso for introduzido matrizes muito grandes, o sistema pode apresentar erros ao tentar carregar um número excessivo de dados simultaneamente.
+        </p>
+        <p>
+           Para solucionar essa dificuldade, a classe <i>Inventario</i> foi criada para gerenciar os arquivos de dados. Durante o processamento do algoritmo, está classe é responsável por separar as matrizes, de forma que apenas uma esteja alocada na memória do sistema por vez. Além disso, essa classe também
+           gera o arquivo DATA <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/output.data">output.data</a>, o qual salva o labirinto após o seu processamento ser finalizado.
+        </p>
+    </div>
+    <div>
+        <h3>🎲 Randomização de posições</h3>
+        <p>
+           Considerando a aletoriedade e o devido tratamento dos elementos especias, o segmento que de fato decide qual é o percurso realizado pelo personagem dentro do labirinto está implementado nas classes <i>Person</i> e <i>Matriz</i>.  
         </p>
     </div>
 </section>
