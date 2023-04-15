@@ -18,7 +18,7 @@ class Person{
     public:
         //************************************************** INICIO CONSTRUTORES */
         Person();
-        Person(short int pntsVidas, Inventario labirinto, Bag bag, int nbrDanoTomado, int nbrMovimentoFeito);
+        Person(short int health, Inventario map, Bag bag, int damageTotal, int moveTotal);
         //************************************************** FINAL CONSTRUTORES *
 
         //************************************************** INICIO GETTERS AND SETTERS */

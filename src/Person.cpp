@@ -8,12 +8,12 @@ Person::Person(){
     this->moveTotal = 0;
 }
 
-Person::Person(short int pntsVidas, Inventario labirinto, Bag bag, int nbrDanoTomado, int nbrMovimentoFeito){
-    this->health = pntsVidas;
-    this->map = labirinto;
+Person::Person(short int health, Inventario map, Bag bag, int damageTotal, int moveTotal){
+    this->health = health;
+    this->map = map;
     this->bag = bag;
-    this->damageTotal = nbrDanoTomado;
-    this->moveTotal = nbrMovimentoFeito;
+    this->damageTotal = damageTotal;
+    this->moveTotal = moveTotal;
 }
 //******************************************************************************************** FINAL CONSTRUTORES */
 

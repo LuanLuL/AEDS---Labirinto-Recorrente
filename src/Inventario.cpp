@@ -151,7 +151,7 @@ int Inventario::selectNumbersNotAccess(string data)
     return numberNotAccess;
 }
 
-void Inventario::createOutPut(){
+void Inventario::createOutput(){
     try{
         fstream inFile;
         ofstream outFile ("dataset/output.data"); 

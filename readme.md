@@ -25,19 +25,19 @@
         Nesse labirinto existem dois elementos que devem ser tratados de formas diferentes. O primeiro elemento especial é a parede (#). As paredes bloqueiam os passos do personagem, fazendo com que a única opção seja desviar e continuar por outro percurso. Já o segundo elemento especial é chamado de armadilha (*). A cada armadilha atravessada pelo personagem, ele levará 1 de dano em um total máximo de 10 vidas. De resto, todos os outros elementos da matriz são considerados como possíveis trajetórias, as quais são valores numéricos positivos.
     </p>
     <p>
-        Ao decorrer do percuso, a cada passo correto sob uma estrada, o personagem ganha um item, subtraindo esse do valor que compõe a posição (x, y) e gravando nessa o valor resultante. A cada subtração bem sucedida o item vai para um banco de vida que, quando cheio (a cada 4 itens), regenera 1 de vida para o personagem. Contudo, pode haver partes do caminho com zero itens, esses devem continuar sendo utilizados, porém, sem computar pontuação. 
+        Ao decorrer do percuso, a cada passo correto sob uma estrada, o personagem ganha um item, subtraindo esse do valor que compõe a posição (x, y) e gravando nessa o valor resultante. A cada subtração bem sucedida o item vai para um banco de vida que, quando cheio (a cada 4 itens), regenera 1 de vida para o personagem. Contudo, pode haver partes do caminho com zero itens, esses devem continuar sendo utilizados, porém, sem computar pontuação no banco de itens. 
     </p>
     <p>
-        Caso o total de vidas venha a ser zero, o algoritimo deve considerar que o personagem morreu e finalizar o programa apresentando os resultados.
+        Caso o total de vidas venha a ser zero, o algoritimo deve considerar que o personagem morreu e finalizar o programa apresentando os resultados. Por fim, o personagem deve escolher o trajeto de forma aleatória. Em outras palavras, ele decide um elemento (x, y) arbitrariamente que esteja a sua volta e segue para ele se possível ou descarta caso seja uma parede.
     </p>
     <p>
-        O personagem escolhe o trajeto de forma aleatória, em outras palavras, ele decide um elemento (x, y) arbitrariamente que esteja a sua volta e segue para ele se possível ou descarta caso seja uma parede. Por fim, a intenção global do problema não é encontrar uma saída, mas sim, tentar consumir o máximo possível de itens até zerar o caminho ou morrer tentando.
+        De modo geral, a intenção do problema não é encontrar uma saída, mas sim, tentar consumir o máximo possível de itens até zerar o caminho ou morrer tentando.
     </p>
 </section>
 <section>
     <h2>✅ Solução proposta</h2>
     <p>
-        Depois de compreendido a problemática e suas respectivas regras, a estratégia de resolução apresentada se baseia em dividir o problema em partes. Primeiramente, é necessario criar uma estrutura organizada de armazenamento para as matrizes que formam o labirinto, na qual é empregado os conceitos da Orientação a Objetos. Em seguida é preciso estabelecer meios sucintos para efetivar a leitura e atualização das matrizes; uma classe foi desenvolvida para satisfazer essa demanda. Por último e mais importante, o personagem deve percorrer o labirinto até que uma das condições de parada seja alcançada. 
+        Depois de compreendido a problemática e suas respectivas regras, a estratégia de resolução apresentada se baseia em dividir o problema em partes. Primeiramente, é necessario criar uma estrutura organizada de armazenamento para as matrizes que formam o labirinto, na qual é empregado os conceitos da Orientação a Objetos. Em seguida é preciso estabelecer meios sucintos para efetivar a leitura, atualização e remoção das matrizes; uma classe foi desenvolvida para satisfazer essa demanda. Por último e mais importante, o personagem deve percorrer o labirinto até que uma das condições de parada seja alcançada. 
     </p>
     <div>
         <h3>💍 Engenharia do sistema</h3>
@@ -45,7 +45,7 @@
             A ferramenta utilizada para construção do sistema é  a linguagem de programação C++. Sendo orientada a objetos (POO), o C++ é usado tanto para comunicação em máquinas quanto para desenvolvimento de softwares acadêmicos e corporativos, jogos e entre outras coisas. Foi escolhida por ser considerada uma das linguagens de programação mais rapidas dos mundo e por possuir as funcionalidades de POO — <a href="https://cplusplus.com/doc/tutorial/" target="_blank">saiba mais</a>.
         </p>
         <p>
-            Com o intuito de organizar os dados selecionados através dos arquivos de entrada, o sistema é composto por quatro classes: ListMatrizes, Matriz, Numero e Caminho. Observe mais na Figura 1.  
+            Com o intuito de organizar e decifrar o labirinto, o sistema é composto por sete classes: <i>Lista</i>, <i>No</i>, <i>Numero</i>, <i>Matriz</i>, <i>Person</i>, <i>Bag</i> e <i>Inventario</i>. Observe mais na Figura 1.  
         </p>
         <br>
         <p align="center">
