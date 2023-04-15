@@ -90,7 +90,7 @@
         </li>
     </ul>
     <p>
-        Por fim, o programa possui um arquivo Makefile que realiza todo o procedimento de compilação e execução. Para tanto, temos as seguintes diretrizes de execução:
+        Por fim, visando dimuir o tempo de processamento do programa de computador é empregado o arquivo <a href="https://pt.stackoverflow.com/questions/154102/makefile-o-que-%C3%A9-e-qual-a-finalidade">Makefile</a> que realiza todo o procedimento de compilação e execução. Para tanto, segue anezado na Tabela 1, as diretrizes de execução no padrão <code>make</code>:
     </p>
     <div align="center">
         <table>
