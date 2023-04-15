@@ -90,7 +90,7 @@
         </li>
     </ul>
     <p>
-        Por fim, visando dimuir o tempo de processamento do programa de computador é empregado o arquivo <a href="https://pt.stackoverflow.com/questions/154102/makefile-o-que-%C3%A9-e-qual-a-finalidade">Makefile</a> que realiza todo o procedimento de compilação e execução. Para tanto, segue anezado na Tabela 1, as diretrizes de execução no padrão <code>make</code>:
+        Por fim, visando dimuir o tempo de processamento do programa de computador é empregado o arquivo <a href="https://pt.stackoverflow.com/questions/154102/makefile-o-que-%C3%A9-e-qual-a-finalidade">Makefile</a> que realiza todo o procedimento de compilação e execução. Para tanto, segue anexado na Tabela 1, as diretrizes de execução no padrão <code>make</code>:
     </p>
     <div align="center">
         <table>
@@ -116,7 +116,7 @@
             </tbody>
         </table>
         <p align="center">
-            <b>Tabela 1:</b> Comandos úteis para compilar e executar o programa de computador
+            <b>Tabela 1:</b> Comandos úteis para compilar e executar o software
         </p>
     </div>
 </section>
