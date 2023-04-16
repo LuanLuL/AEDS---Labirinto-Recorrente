@@ -79,6 +79,15 @@
             <img src="img/Matrixes_examples.png">
             <br><br><strong>Figura 2:</strong> Possibilidades de randomização na matriz
         </p>
+        <p>
+            Observando a Figura 2, é possível perceber a forma como a conexão entre as matrizes é feita. De forma explicativa, quando o personagem se encontra dentro da matriz, o proximo elemento do percurso será sempre adjacecnte a ele. Todavia, quando o personagem se encontrar em uma das bordas, existe a possibilidade de, radomicamente, ele sair da matriz; nessa circunstância o personagem é teletransportado para outra matriz do modo exibido na Figura 2.
+        </p>
+        <p>
+            É importante enfatizar que a primeira posição (x, y) acessada pelo personagem ao adentrar qualquer matriz também é escolhida de forma aleatória. Ou seja, o personagem sempre começará em um elemento randomico dentro dos limites e que não seja uma parede da matriz; Não há exeções para esse comportamento.
+        </p>
+        <p>
+            Outra idealização a ser considerada no processo de randomização das posições é a respeito dos portais. Um portal nada mais é que uma parede situada em uma borda. Se acessado, um portal tem por função teletrasnportar o personagem para a matriz mais próxima. Portanto, tendo em mente que a matriz posterior tem prioridade, os portais localizados na borda direita ou inferior conduzem para a matriz seguinte. Já os portais situados na borda esquerda ou superior levam para a matriz anterior. Isso é empregado no sitema para melhorar a conexão entre as matrizes, fazendo com que o software se torne mais sucinto.   
+        </p>
     </div>
 </section>
 <section>
@@ -126,6 +135,33 @@
             <b>Tabela 1:</b> Comandos úteis para compilar e executar o software
         </p>
     </div>
+</section>
+<section>
+    <h2>🙌 Resultado Final</h2>
+    <p>
+        Diante do exposto, tem-se que o algoritmo apresentado nesse repositório, é capaz de resolver a problemática do labirinto recorrente. <!-- falar sobre funções principais e tempo de execusão -->
+    </p>
+    <p>
+        Observe abaixo um possível desfecho atingido com a entrada <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>:
+        <pre>
+    ************* INICIO *************<br>
+    Resolvendo o labirinto recorrente ...<br>
+    FIM DE JOGO<br>
+    O personagem morreu!<br>
+    Resultados:<br>
+    a) Quantidade de casas percorridas ao todo: 59<br>
+    b) Soma de itens consumidos pelo caminho: 36<br>
+    c) Quantidade de casas que ficaram sem serem exploradas:<br>
+            Matriz 1: 25
+            Matriz 2: 30
+            Matriz 3: 21<br>
+    d) Quantidade de perigos enfrentados ao decorrer do percurso: 19<br>
+    ************* FIM *************
+        </pre>
+    </p>
+    <p>
+        Conclui-se então que a problemática do labirinto recorrente, na maioria dos casos, não será finalizada, pois o persongem acaba morrendo antes de acatar as condições de parada. Além disso, os resultados finais não possuem um padrão para a mesma entrada de dados. Assim sendo, por possuir características de processamento randômico, a cada excução, o software pode apresentar uma solução completamente diferente.
+    </p>
 </section>
 <section>
     <hr size="0.5">

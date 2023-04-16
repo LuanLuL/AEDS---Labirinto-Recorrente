@@ -192,6 +192,6 @@ void Person::printResults(bool isDead){
     }while(noAux != this->map.getLista().getInicio());
     cout << "\n\nd) Quantidade de perigos enfrentados ao decorrer do percurso: " << this->damageTotal << endl;
     cout << "\n************* FIM *************\n\n";
-    this->map.createOutPut();
+    this->map.createOutput();
 }
 //******************************************************************************************** FINAL METODOS */
