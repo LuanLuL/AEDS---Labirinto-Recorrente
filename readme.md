@@ -140,15 +140,15 @@
     <h2>🙌 Resultado Final</h2>
     <p>
         Diante do exposto, tem-se que o programa de computador apresentado nesse repositório, é capaz de resolver a problemática do labirinto recorrente. Com uma temática randômica, os métodos princiapais do algoritimo somam em média um custo assintótico de <p align="center"><i><strong>K × ( 27 + n )</i></strong> ,</p><br>onde <i>K</i> representa o número de parcelas randomizadas, <i>n</i> simboliza a quantidade de matrizes dadas como entrada no sistema e <i>27</i> é o custo computacional constante das funções utilizadas:
-        <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Person.cpp">
-            <p><code>void Person::move(){...}</code></p>
-            <p><code>Person::finishSolveMaze(){...}</code></p>
-        </a>
-        <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Matriz.cpp">
-            <p><code>short int Matriz::randomStreet(){...}</code></p>
-            <p><code>void Matriz::randomStart(){...}</code></p>
-        </a>
     </p>
+    <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Person.cpp">
+        <p><code>void Person::move(){...}</code></p>
+        <p><code>Person::finishSolveMaze(){...}</code></p>
+    </a>
+    <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Matriz.cpp">
+        <p><code>short int Matriz::randomStreet(){...}</code></p>
+        <p><code>void Matriz::randomStart(){...}</code></p>
+    </a>
     <p>
         Observe abaixo um possível desfecho atingido com a entrada <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>:
         <pre>
