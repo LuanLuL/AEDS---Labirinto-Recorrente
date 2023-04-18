@@ -139,7 +139,7 @@
 <section>
     <h2>🙌 Resultado Final</h2>
     <p>
-        Diante do exposto, tem-se que o programa de computador apresentado nesse repositório, é capaz de resolver a problemática do labirinto recorrente. Com uma temática randômica, os métodos princiapais do algoritimo somam em média um custo assintótico de 
+        Diante do exposto, tem-se que o programa de computador apresentado nesse repositório, é capaz de resolver a problemática do labirinto recorrente. Seguinto o padrão randômico, os métodos princiapais do algoritimo somam em média um custo assintótico de 
         <p align="center">
             <i><strong>K × ( 27 + n )</i> ,</strong>
         </p>
