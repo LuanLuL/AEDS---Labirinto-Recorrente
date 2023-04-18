@@ -91,6 +91,48 @@
     </div>
 </section>
 <section>
+    <h2>🙌 Resultado Final</h2>
+    <p>
+        Diante do exposto, tem-se que o programa de computador apresentado nesse repositório, é capaz de resolver a problemática do labirinto recorrente. Seguindo o padrão de aleatoriedade, os métodos princiapais do algoritimo somam em média um custo assintótico de 
+        <p align="center">
+            <i><strong>K × ( 27 + n )</i> ,</strong>
+        </p>
+        onde <i>K</i> representa o número de parcelas randomizadas, <i>n</i> simboliza a quantidade de matrizes concedidas na entrada do sistema e a constante <i>27</i> indica o consumo computacional das funções utilizadas durante o processo de resolução:
+    </p>
+    <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Person.cpp">
+        <p><code>void Person::move(){...}</code></p>
+        <p><code>bool Person::finishSolveMaze(){...}</code></p>
+    </a>
+    <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Matriz.cpp">
+        <p><code>short int Matriz::randomStreet(){...}</code></p>
+        <p><code>void Matriz::randomStart(){...}</code></p>
+    </a>
+    <p>
+        É importante ressaltar que o software consegue tratar a maioria dos casos envolvendo os elementos especias. Porém, há exeções nas quais o personagem possa vim a ficar trancafiado entre as paredes. Essas, por sua vez, não foram devidamente ponderadas pois a probabilidade de ocorrerem são muito baixas.
+    </p>
+    <p>
+        Observe logo abaixo um possível desfecho atingido com a entrada <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>:
+        <pre>
+    ************* INICIO *************<br>
+    Resolvendo o labirinto recorrente ...<br>
+    FIM DE JOGO<br>
+    O personagem morreu!<br>
+    Resultados:<br>
+    a) Quantidade de casas percorridas ao todo: 59<br>
+    b) Soma de itens consumidos pelo caminho: 36<br>
+    c) Quantidade de casas que ficaram sem serem exploradas:<br>
+            Matriz 1: 25
+            Matriz 2: 30
+            Matriz 3: 21<br>
+    d) Quantidade de perigos enfrentados ao decorrer do percurso: 19<br>
+    ************* FIM *************
+        </pre>
+    </p>
+    <p>
+        Conclui-se então que a problemática do labirinto recorrente, na maioria dos casos, não será finalizada, pois o persongem acaba morrendo antes de acatar as condições de parada. Além disso, os resultados finais não possuem um padrão para a mesma entrada de dados. Assim sendo, por possuir características de processamento randômico, a cada excução, o software poderá apresentar uma solução completamente diferente.
+    </p>
+</section>
+<section>
     <h2>🎞 Processamento</h2>
     <p>
         Durante o deselvovimento do algoritimo apresentado nesse repositório, foi-se utilizado de três principais tecnologias: Visual Studio Code e WSL:Ubunto.
@@ -135,48 +177,6 @@
             <b>Tabela 1:</b> Comandos úteis para compilar e executar o software
         </p>
     </div>
-</section>
-<section>
-    <h2>🙌 Resultado Final</h2>
-    <p>
-        Diante do exposto, tem-se que o programa de computador apresentado nesse repositório, é capaz de resolver a problemática do labirinto recorrente. Seguindo o padrão de aleatoriedade, os métodos princiapais do algoritimo somam em média um custo assintótico de 
-        <p align="center">
-            <i><strong>K × ( 27 + n )</i> ,</strong>
-        </p>
-        onde <i>K</i> representa o número de parcelas randomizadas, <i>n</i> simboliza a quantidade de matrizes concedidas na entrada do sistema e a constante <i>27</i> indica o consumo computacional das funções utilizadas durante o processo de resolução:
-    </p>
-    <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Person.cpp">
-        <p><code>void Person::move(){...}</code></p>
-        <p><code>bool Person::finishSolveMaze(){...}</code></p>
-    </a>
-    <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Matriz.cpp">
-        <p><code>short int Matriz::randomStreet(){...}</code></p>
-        <p><code>void Matriz::randomStart(){...}</code></p>
-    </a>
-    <p>
-        É importante ressaltar que o software consegue tratar a maioria dos casos envolvendo os elementos especias. Porém, há exeções nas quais o personagem possa vim a ficar trancafiado entre as paredes. Essas, por sua vez, não foram devidamente ponderadas pois a probabilidade de ocorrerem são muito baixas.
-    </p>
-    <p>
-        Observe logo abaixo um possível desfecho atingido com a entrada <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>:
-        <pre>
-    ************* INICIO *************<br>
-    Resolvendo o labirinto recorrente ...<br>
-    FIM DE JOGO<br>
-    O personagem morreu!<br>
-    Resultados:<br>
-    a) Quantidade de casas percorridas ao todo: 59<br>
-    b) Soma de itens consumidos pelo caminho: 36<br>
-    c) Quantidade de casas que ficaram sem serem exploradas:<br>
-            Matriz 1: 25
-            Matriz 2: 30
-            Matriz 3: 21<br>
-    d) Quantidade de perigos enfrentados ao decorrer do percurso: 19<br>
-    ************* FIM *************
-        </pre>
-    </p>
-    <p>
-        Conclui-se então que a problemática do labirinto recorrente, na maioria dos casos, não será finalizada, pois o persongem acaba morrendo antes de acatar as condições de parada. Além disso, os resultados finais não possuem um padrão para a mesma entrada de dados. Assim sendo, por possuir características de processamento randômico, a cada excução, o software poderá apresentar uma solução completamente diferente.
-    </p>
 </section>
 <section>
     <hr size="0.5">
