@@ -143,18 +143,21 @@
         <p align="center">
             <i><strong>K × ( 27 + n )</i> ,</strong>
         </p>
-        onde <i>K</i> representa o número de parcelas randomizadas, <i>n</i> simboliza a quantidade de matrizes dadas como entrada no sistema e <i>27</i> é o custo computacional constante das funções utilizadas:
+        onde <i>K</i> representa o número de parcelas randomizadas, <i>n</i> simboliza a quantidade de matrizes concedidas na entrada do sistema e a constante <i>27</i> indica o consumo computacional das funções utilizadas durante o processo de resolução:
     </p>
     <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Person.cpp">
         <p><code>void Person::move(){...}</code></p>
-        <p><code>Person::finishSolveMaze(){...}</code></p>
+        <p><code>bool Person::finishSolveMaze(){...}</code></p>
     </a>
     <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Matriz.cpp">
         <p><code>short int Matriz::randomStreet(){...}</code></p>
         <p><code>void Matriz::randomStart(){...}</code></p>
     </a>
     <p>
-        Observe abaixo um possível desfecho atingido com a entrada <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>:
+        É importante ressaltar que o software consegue tratar a maioria dos casos envolvendo os elementos especias. Porém, há exeções nas quais o personagem possa vim a ficar trancafiado entre as paredes. Essas, por sua vez, não foram devidamente ponderadas pois a probabilidade de ocorrerem são muito baixas.
+    </p>
+    <p>
+        Observe logo abaixo um possível desfecho atingido com a entrada <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>:
         <pre>
     ************* INICIO *************<br>
     Resolvendo o labirinto recorrente ...<br>
