@@ -75,7 +75,7 @@
         <p>
             A lógica por traz dessa "escolha" aleatória se da por meio do uso da <a href="https://cplusplus.com/reference/random/">random</a>, uma biblioteca C++ que permite produzir números randomicos usando combinações de geradores e distribuições.  Nesse seguimento, a ideia consiste em gerar dois números (x, y) que entejam adjacentes a posição do personagem, ou seja, o trajeto é continuo quando dentro da matriz. Todavia, esse percurso pode se tornar não-continuo ao cair em um elemento (x, y) que esteja forá dos limites da matriz. Observe na Figura 2.
         </p>
-         <p align="center">
+         <pc
             <img src="img/Matrixes_examples.png">
             <br><br><strong>Figura 2:</strong> Possibilidades de randomização na matriz
         </p>
@@ -139,7 +139,15 @@
 <section>
     <h2>🙌 Resultado Final</h2>
     <p>
-        Diante do exposto, tem-se que o algoritmo apresentado nesse repositório, é capaz de resolver a problemática do labirinto recorrente. <!-- falar sobre funções principais e tempo de execusão -->
+        Diante do exposto, tem-se que o programa de computador apresentado nesse repositório, é capaz de resolver a problemática do labirinto recorrente. Com uma temática randômica, os métodos princiapais do algoritimo somam em média um custo assintótico de <p align="center"><i><strong>K × ( 27 + n )</i></strong> ,</p><br>onde <i>K</i> representa o número de parcelas randomizadas, <i>n</i> simboliza a quantidade de matrizes dadas como entrada no sistema e <i>27</i> é o custo computacional constante das funções utilizadas:
+        <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Person.cpp">
+            <p><code>void Person::move(){...}</code></p>
+            <p><code>Person::finishSolveMaze(){...}</code></p>
+        </a>
+        <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/src/Matriz.cpp">
+            <p><code>short int Matriz::randomStreet(){...}</code></p>
+            <p><code>void Matriz::randomStart(){...}</code></p>
+        </a>
     </p>
     <p>
         Observe abaixo um possível desfecho atingido com a entrada <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>:
@@ -160,7 +168,7 @@
         </pre>
     </p>
     <p>
-        Conclui-se então que a problemática do labirinto recorrente, na maioria dos casos, não será finalizada, pois o persongem acaba morrendo antes de acatar as condições de parada. Além disso, os resultados finais não possuem um padrão para a mesma entrada de dados. Assim sendo, por possuir características de processamento randômico, a cada excução, o software pode apresentar uma solução completamente diferente.
+        Conclui-se então que a problemática do labirinto recorrente, na maioria dos casos, não será finalizada, pois o persongem acaba morrendo antes de acatar as condições de parada. Além disso, os resultados finais não possuem um padrão para a mesma entrada de dados. Assim sendo, por possuir características de processamento randômico, a cada excução, o software poderá apresentar uma solução completamente diferente.
     </p>
 </section>
 <section>

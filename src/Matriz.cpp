@@ -139,6 +139,9 @@ short int Matriz::randomStreet(int *keyRow, int *keyColumn, int *currentRow, int
 	if((*currentRow == *keyRow) && (*currentColumn == *keyColumn)){ //	CAIU ONDE JA ESTAVA
 		return randomStreet(keyRow, keyColumn, currentRow, currentColumn);
 	}
+    else if((*keyRow >= 0 && *keyRow <= this->tamanhoLinha-1) && (*keyColumn >= 0 && *keyColumn <= this->tamanhoColuna-1)){ //	ESTA NA MATRIZ
+		return 5;
+	}
 	else if(*keyRow == -1 && (*keyColumn >= 0 && *keyColumn <= this->tamanhoColuna-1)){ //	SAIU DA MATRIZ PELA BORDA SUPERIOR
 		return 1;
 	}
@@ -150,9 +153,6 @@ short int Matriz::randomStreet(int *keyRow, int *keyColumn, int *currentRow, int
 	}
 	else if((*keyRow >=0 && *keyRow <= this->tamanhoLinha-1) && *keyColumn == -1){ //	SAIU DA MATRIZ PELA BORDA ESQUERDA
 		return 4;
-	}
-	else if((*keyRow >= 0 && *keyRow <= this->tamanhoLinha-1) && (*keyColumn >= 0 && *keyColumn <= this->tamanhoColuna-1)){ //	ESTA NA MATRIZ
-		return 5;
 	}
 	else if((*keyRow == -1 && *keyColumn == -1) || (*keyRow == this->tamanhoLinha && *keyColumn == this->tamanhoColuna) || (*keyRow == -1 && *keyColumn == this->tamanhoColuna) || (*keyRow == this->tamanhoLinha && *keyColumn == -1)){ //	SAIU PARA ALGUMA QUINA
 		*keyRow = *currentRow;
