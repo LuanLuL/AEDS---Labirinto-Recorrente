@@ -60,10 +60,10 @@
     <div>
         <h3>📁 Estouro de memória</h3>
         <p>
-            Sabe-se que os dados de entrada do labirinto são inseridos através do arquivo DATA <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>. Nesse sentido, o usuario tem a possibilidade de inserir matrizes do tamanho que desejar. Contudo, se ao acaso for introduzido matrizes muito grandes, o sistema pode apresentar erros ao tentar carregar um número excessivo de dados simultaneamente.
+            Sabe-se que os dados de entrada do labirinto são inseridos através do arquivo DATA <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>. Nesse sentido, o usuario tem a possibilidade de inserir matrizes do tamanho que desejar. Contudo, se ao acaso for introduzido matrizes muito grandes, o sistema pode apresentar erros ao tentar carregar um número excessivo de dados simultaneamente. Sendo assim é imprescindível que  haja um gerenciamento dos arquivos de dados.
         </p>
         <p>
-           Para solucionar essa dificuldade, a classe <i>Inventario</i> foi criada para gerenciar os arquivos de dados. Durante o processamento do algoritmo, está classe é responsável por separar as matrizes, de forma que apenas uma esteja alocada na memória do sistema por vez. Além disso, essa classe também
+            Para suprir essa demenda a classe <i>Inventario</i> foi criada. Durante o processamento do algoritmo, está classe é responsável por separar as matrizes, de forma que apenas uma esteja alocada na memória do sistema por vez. Além disso, essa classe também
            gera o arquivo DATA <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/output.data">output.data</a>, o qual salva o labirinto após o seu processamento ser finalizado.
         </p>
     </div>
