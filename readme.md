@@ -108,7 +108,7 @@
         <p><code>void Matriz::randomStart(){...}</code></p>
     </a>
     <p>
-        É importante ressaltar que o software consegue tratar a maioria dos casos envolvendo os elementos especias. Porém, há exeções nas quais o personagem possa vim a ficar trancafiado entre as paredes. Essas, por sua vez, não foram devidamente ponderadas pois a probabilidade de ocorrerem são muito baixas.
+        É interessante mencionar que, após a realização de teste, foi comprovado que o software consegue tratar a maioria dos casos envolvendo os elementos especias. Porém, há exeções nas quais o personagem possa vim a ficar trancafiado entre as paredes. Essas, por sua vez, não foram devidamente ponderadas pois a probabilidade de ocorrerem são muito baixas.
     </p>
     <p>
         Observe logo abaixo um possível desfecho atingido com a entrada <a href="https://github.com/LuanLuL/AEDS---Labirinto-Recorrente/blob/master/dataset/input.data">input.data</a>:
