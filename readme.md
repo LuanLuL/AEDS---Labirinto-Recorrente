@@ -75,8 +75,8 @@
         <p>
             A lógica por traz dessa "escolha" aleatória se da por meio do uso da <a href="https://cplusplus.com/reference/random/">random</a>, uma biblioteca C++ que permite produzir números randomicos usando combinações de geradores e distribuições.  Nesse seguimento, a ideia consiste em gerar dois números (x, y) que entejam adjacentes a posição do personagem, ou seja, o trajeto é continuo quando dentro da matriz. Todavia, esse percurso pode se tornar não-continuo ao cair em um elemento (x, y) que esteja forá dos limites da matriz. Observe na Figura 2.
         </p>
-         <pc
-            <img src="img/Matrixes_examples.png">
+         <p>
+            <img src="img/Matrixes_examples.png" />
             <br><br><strong>Figura 2:</strong> Possibilidades de randomização na matriz
         </p>
         <p>
